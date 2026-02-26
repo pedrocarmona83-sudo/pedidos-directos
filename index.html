@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pedidos Directos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1 id="bizName">Pedidos</h1>
+      <p id="bizSubtitle" class="muted"></p>
+    </div>
+    <a id="whatsBtnTop" class="btn btn-whats" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Menú</h2>
+      <div id="menu" class="menu"></div>
+    </section>
+
+    <aside class="card">
+      <h2>Tu pedido</h2>
+      <div id="cart" class="cart"></div>
+
+      <div class="form">
+        <label>Nombre (opcional)
+          <input id="custName" placeholder="Ej. Pedro" />
+        </label>
+        <label>Dirección / referencias (opcional)
+          <input id="custAddr" placeholder="Ej. Centro, calle..." />
+        </label>
+        <label>Nota (opcional)
+          <input id="custNote" placeholder="Ej. sin cebolla" />
+        </label>
+      </div>
+
+      <div class="totals">
+        <div><span>Total:</span> <strong id="total">$0</strong></div>
+      </div>
+
+      <a id="whatsBtn" class="btn btn-whats" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      <p class="muted small">Al enviar, se abrirá WhatsApp con el pedido listo.</p>
+    </aside>
+  </main>
+
+  <footer class="foot muted small">
+    Hecho con Pedidos Directos Pro • Sin comisiones
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

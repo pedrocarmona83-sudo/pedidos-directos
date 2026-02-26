@@ -1,0 +1,41 @@
+
+{
+  "name": "Taquería Arandas Tepotzotlán",
+  "subtitle": "Pedidos Taquería Arandas Tepotzotlán por WhatsApp • Sin comisión",
+  "whatsapp_e164": "5215545791802",
+  "items": [
+    { "name": "Taco al pastor", "price": 16, "desc": "Con piña opcional" },
+    { "name": "Taco suadero", "price": 16, "desc": "" },
+    { "name": "Taco longaniza", "price": 16, "desc": "" },
+    { "name": "Taco campechano", "price": 16, "desc": "" },
+    { "name": "Taco ojo", "price": 16, "desc": "" },
+    { "name": "Taco surtida", "price": 16, "desc": "" },
+    { "name": "Taco trompa", "price": 16, "desc": "" },
+    { "name": "Taco cachete", "price": 16, "desc": "" },
+    { "name": "Taco moyeja", "price": 16, "desc": "" },
+    { "name": "Taco tripa", "price": 20, "desc": "" },
+    { "name": "Taco bistec", "price": 35, "desc": "" },
+    { "name": "Taco pollo", "price": 35, "desc": "" },
+    { "name": "Taco arrachera", "price": 35, "desc": "" },
+    { "name": "Taco lengua", "price": 30, "desc": "" },
+    { "name": "Taco sesos", "price": 30, "desc": "" },
+    { "name": "Torta", "price": 55, "desc": "Sin queso" },
+    { "name": "Torta", "price": 65, "desc": "Con queso" },
+    { "name": "Torta Tripa", "price": 60, "desc": "Con queso" },
+    { "name": "Torta Tripa", "price": 70, "desc": "Sin queso" },
+    { "name": "Torta bistec", "price": 75, "desc": "Con queso" },
+    { "name": "Torta bistec", "price": 65, "desc": "Sin queso" },
+    { "name": "Torta pollo", "price": 75, "desc": "Con queso" },
+    { "name": "Torta pollo", "price": 65, "desc": "Sin queso" },
+    { "name": "Torta arrachera", "price": 75, "desc": "Con queso" },
+    { "name": "Torta arrachera", "price": 65, "desc": "Sin queso" },
+    { "name": "Gringa", "price": 55, "desc": "Tortilla de harina" },
+    { "name": "Agua horchata", "price": 30, "desc": "500 ml" },
+    { "name": "Agua horchata", "price": 55, "desc": "1 lt" },
+    { "name": "Agua limón", "price": 30, "desc": "500 ml" },
+    { "name": "Agua limón", "price": 55, "desc": "1 lt" },
+    { "name": "Refresco", "price": 30, "desc": "" }
+    ]
+
+}
+

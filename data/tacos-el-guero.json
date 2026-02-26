@@ -1,0 +1,11 @@
+{
+  "name": "TacosTacos",
+  "subtitle": "Pedidos TacosTacos por WhatsApp • Sin comisión",
+  "whatsapp_e164": "5215545791802",
+  "items": [
+    { "name": "Taco al pastor", "price": 18, "desc": "Con piña opcional" },
+    { "name": "Taco suadero", "price": 20, "desc": "" },
+    { "name": "Gringa", "price": 55, "desc": "Tortilla de harina" },
+    { "name": "Agua horchata", "price": 25, "desc": "500 ml" }
+  ]
+}
