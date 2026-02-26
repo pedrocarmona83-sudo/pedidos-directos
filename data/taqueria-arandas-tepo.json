@@ -1,7 +1,7 @@
 
 {
   "name": "Taquería Arandas Tepotzotlán",
-  "subtitle": "Pedidos Taquería Arandas Tepotzotlán por WhatsApp • Sin comisión",
+  "subtitle": "Escanea y ordena • Sin esperar",
   "whatsapp_e164": "5215545791802",
   "items": [
     { "name": "Taco al pastor", "price": 16, "desc": "Con piña opcional" },
@@ -38,4 +38,5 @@
     ]
 
 }
+
 
