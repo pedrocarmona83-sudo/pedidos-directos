@@ -71,6 +71,16 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
           <strong>${it.name}</strong>
           ${it.desc ? `<div class="muted small">${it.desc}</div>` : ""}
           <div class="price">${money(it.price)}</div>
+${
+  it.options?.type === "select"
+    ? `<div style="margin-top:8px">
+         <label class="muted small">${it.options.label || "Opciones"}</label>
+         <select data-opt="select" data-idx="${idx}" style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6">
+           ${(it.options.choices || []).map(c => `<option value="${c}">${c}</option>`).join("")}
+         </select>
+       </div>`
+    : ``
+}
         </div>
         <div class="controls">
           <button class="btn btn-sm btn-ghost" data-act="dec" data-idx="${idx}">-</button>
@@ -151,4 +161,5 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
   </div>`;
 
 });
+
 
