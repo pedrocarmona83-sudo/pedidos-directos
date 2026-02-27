@@ -34,9 +34,19 @@
     { "name": "Agua horchata", "price": 55, "desc": "1 lt" },
     { "name": "Agua limón", "price": 30, "desc": "500 ml" },
     { "name": "Agua limón", "price": 55, "desc": "1 lt" },
-    { "name": "Refresco", "price": 30, "desc": "" }
+    { "name": "Refresco", 
+      "price": 30, 
+      "desc": "355 ml",
+      "options":
+        {
+          "type": "select",
+          "label": "¿Que refresco",
+          "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
+        }
+    }
     ]
 
 }
+
 
 
