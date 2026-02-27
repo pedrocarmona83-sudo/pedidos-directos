@@ -22,7 +22,7 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
   const lines = [];
   lines.push(`*Nuevo pedido* — ${biz.name}`);
   lines.push("");
-  cart.forEach((c) => lines.push(`• ${c.qty} x ${c.name} — ${money(c.qty * c.price)}`));
+  cart.forEach((c) => lines.push(`• ${c.qty} x ${c.name}${c.optionText || ""} — ${money(c.qty * c.price)}`));
   lines.push("");
   lines.push(`*Total:* ${money(total)}`);
   if (name) lines.push(`Nombre: ${name}`);
@@ -174,6 +174,7 @@ ${
   </div>`;
 
 });
+
 
 
 
