@@ -46,8 +46,12 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
   const totalEl = document.getElementById("total");
 
   const state = {
-    items: biz.items.map((it) => ({ ...it, qty: 0 }))
-  };
+  items: biz.items.map((it) => ({
+    ...it,
+    qty: 0,
+    selectedOption: it.options?.type === "select" ? (it.options.choices?.[0] || "") : ""
+  }))
+};
 
   function getCart() {
     return state.items.filter((i) => i.qty > 0);
@@ -147,3 +151,4 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
   </div>`;
 
 });
+
