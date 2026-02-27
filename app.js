@@ -46,11 +46,12 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
   const totalEl = document.getElementById("total");
 
   const state = {
-  items: biz.items.map((it) => ({
+  items: biz.items.map((it, idx) => ({
+    id: it.id || `item_${idx}`,
     ...it,
-    qty: 0,
     selectedOption: it.options?.type === "select" ? (it.options.choices?.[0] || "") : ""
-  }))
+  })),
+  cart: {} // { "itemId|option": { itemId, name, price, option, qty } }
 };
 
   function getCart() {
@@ -62,9 +63,37 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
     }));
 }
 
+function variantKey(item) {
+  const opt = item.options?.type === "select" ? (item.selectedOption || "") : "";
+  return `${item.id}|${opt}`;
+}
+
+function addToCart(item) {
+  const key = variantKey(item);
+  const opt = item.options?.type === "select" ? (item.selectedOption || "") : "";
+  const lineName = item.name;
+  const line = state.cart[key] || {
+    itemId: item.id,
+    name: lineName,
+    price: item.price,
+    option: opt,
+    qty: 0
+  };
+  line.qty += 1;
+  state.cart[key] = line;
+}
+
+function removeFromCart(item) {
+  const key = variantKey(item);
+  if (!state.cart[key]) return;
+  state.cart[key].qty = Math.max(0, state.cart[key].qty - 1);
+  if (state.cart[key].qty === 0) delete state.cart[key];
+}
+
+  
   function getTotal() {
-    return getCart().reduce((s, i) => s + i.qty * i.price, 0);
-  }
+  return getCart().reduce((s, l) => s + l.qty * l.price, 0);
+}
 
   function renderMenu() {
     menuEl.innerHTML = "";
@@ -174,6 +203,7 @@ ${
   </div>`;
 
 });
+
 
 
 
