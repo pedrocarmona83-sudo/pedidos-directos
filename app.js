@@ -1,3 +1,4 @@
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLVKRB43ZPlOo1KTqr_Op_xjJkXjy5_fc9D_ppAeoh8003zMJq1CYrrDvi0zava2z_/exec";
 const money = (n) =>
   new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(n);
 
@@ -125,6 +126,40 @@ function fmtOrderText(biz, cartLines, name, addr, note, total) {
       b.style.opacity = disabled ? "0.5" : "1";
       b.style.pointerEvents = disabled ? "none" : "auto";
     });
+
+    const sendBtn = document.getElementById("whatsBtn");
+
+sendBtn.onclick = async () => {
+  const cartLines = getCartLines();
+  if (cartLines.length === 0) return;
+
+  const name = document.getElementById("custName").value.trim();
+  const addr = document.getElementById("custAddr").value.trim();
+  const note = document.getElementById("custNote").value.trim();
+  const total = getTotal();
+
+  const orderText = cartLines
+    .map(c => `${c.qty} x ${c.name}${c.optionText}`)
+    .join(", ");
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        business: biz.name,
+        customer: name,
+        address: addr,
+        note: note,
+        order: orderText,
+        total: total
+      })
+    });
+  } catch (e) {
+    console.log("No se pudo guardar", e);
+  }
+};
+
+    
   }
 
   function renderMenu() {
@@ -248,3 +283,4 @@ function fmtOrderText(biz, cartLines, name, addr, note, total) {
     <p>Ejemplo: <code>?biz=demo</code></p>
   </div>`;
 });
+
