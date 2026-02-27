@@ -55,12 +55,10 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
 };
 
   function getCart() {
-  return state.items
-    .filter((i) => i.qty > 0)
-    .map((i) => ({
-      ...i,
-      optionText: i.options?.type === "select" && i.selectedOption ? ` (${i.selectedOption})` : ""
-    }));
+  return Object.values(state.cart).map((l) => ({
+    ...l,
+    optionText: l.option ? ` (${l.option})` : ""
+  }));
 }
 
 function variantKey(item) {
@@ -203,6 +201,7 @@ ${
   </div>`;
 
 });
+
 
 
 
