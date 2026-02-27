@@ -86,7 +86,7 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
       if (act === "dec") state.items[idx].qty = Math.max(0, state.items[idx].qty - 1);
       document.getElementById(`qty-${idx}`).textContent = state.items[idx].qty;
       renderCart();
-    }, { once: true });
+    });
   }
 
   function renderCart() {
@@ -145,4 +145,5 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
     <p>Tip: asegúrate de tener <code>data/${getSlug()}.json</code>.</p>
     <p>Ejemplo: <code>?biz=demo</code></p>
   </div>`;
+
 });
