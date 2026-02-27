@@ -101,6 +101,14 @@ ${
       document.getElementById(`qty-${idx}`).textContent = state.items[idx].qty;
       renderCart();
     });
+
+    menuEl.addEventListener("change", (e) => {
+  const sel = e.target.closest("select[data-opt='select']");
+  if (!sel) return;
+  const idx = Number(sel.dataset.idx);
+  state.items[idx].selectedOption = sel.value;
+  renderCart();
+});
   }
 
   function renderCart() {
@@ -161,5 +169,6 @@ ${
   </div>`;
 
 });
+
 
 
