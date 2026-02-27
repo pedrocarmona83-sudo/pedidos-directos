@@ -128,7 +128,7 @@ ${
         r.className = "cartRow";
         r.innerHTML = `
           <div>
-            <strong>${c.qty} x ${c.name}</strong>
+            <strong>${c.qty} x ${c.name}${c.optionText || ""}</strong>
             <div class="muted small">${money(c.price)} c/u</div>
           </div>
           <div><strong>${money(c.qty * c.price)}</strong></div>
@@ -174,6 +174,7 @@ ${
   </div>`;
 
 });
+
 
 
 
