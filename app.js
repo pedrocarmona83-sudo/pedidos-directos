@@ -54,8 +54,13 @@ function fmtOrderText(biz, cart, name, addr, note, total) {
 };
 
   function getCart() {
-    return state.items.filter((i) => i.qty > 0);
-  }
+  return state.items
+    .filter((i) => i.qty > 0)
+    .map((i) => ({
+      ...i,
+      optionText: i.options?.type === "select" && i.selectedOption ? ` (${i.selectedOption})` : ""
+    }));
+}
 
   function getTotal() {
     return getCart().reduce((s, i) => s + i.qty * i.price, 0);
@@ -169,6 +174,7 @@ ${
   </div>`;
 
 });
+
 
 
 
