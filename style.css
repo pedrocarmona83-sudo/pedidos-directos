@@ -24,4 +24,33 @@ h2 { margin:0 0 12px; font-size:16px; }
 label { display:flex; flex-direction:column; gap:6px; font-size:13px; }
 input { padding:10px; border-radius:12px; border:1px solid #1b2230; background:#0b0c10; color:#e9eef6; }
 .totals { display:flex; justify-content:space-between; padding:10px; border-top:1px solid #1b2230; margin-top:10px; }
+
 .foot { padding:16px; text-align:center; border-top:1px solid #1b2230; }
+
+#hero{
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid #1b2230;
+}
+#hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(11,12,16,.85), rgba(11,12,16,.35));
+  pointer-events:none;
+}
+.top{
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.top{
+  position:sticky;
+  top:0;
+}
+#hero{
+  position:sticky;
+  top:0;
+}
+.heroText{ position:relative; z-index:1; }
+#whatsBtnTop{ position:relative; z-index:1; }
