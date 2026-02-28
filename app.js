@@ -1,5 +1,5 @@
 // ====== CONFIG ======
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLVKRB43ZPlOo1KTqr_Op_xjJkXjy5_fc9D_ppAeoh8003zMJq1CYrrDvi0zava2z_/exec"; // https://script.google.com/macros/s/XXX/exec
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwS9VTlX0GOgxGlKCJ9vQeGhgLM9Z3K_lU1_hOG6TEYfPZ2wI-ZrNImwCivgYE2J0tn/exec"; // https://script.google.com/macros/s/XXX/exec
 // ====================
 
 const money = (n) =>
@@ -357,3 +357,4 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
     <p>Ejemplo: <code>?biz=demo</code></p>
   </div>`;
 });
+
