@@ -1,4 +1,7 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLVKRB43ZPlOo1KTqr_Op_xjJkXjy5_fc9D_ppAeoh8003zMJq1CYrrDvi0zava2z_/exec";
+// ====== CONFIG ======
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLVKRB43ZPlOo1KTqr_Op_xjJkXjy5_fc9D_ppAeoh8003zMJq1CYrrDvi0zava2z_/exec"; // https://script.google.com/macros/s/XXX/exec
+// ====================
+
 const money = (n) =>
   new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(n);
 
@@ -19,9 +22,10 @@ function buildWhatsLink(phoneE164, text) {
   return `https://wa.me/${phoneE164}?text=${encoded}`;
 }
 
-function fmtOrderText(biz, cartLines, name, addr, note, total) {
+function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
   const lines = [];
   lines.push(`*Nuevo pedido* — ${biz.name}`);
+  if (orderNumber) lines.push(`*Pedido #${orderNumber}*`);
   lines.push("");
 
   cartLines.forEach((c) => {
@@ -60,7 +64,8 @@ function fmtOrderText(biz, cartLines, name, addr, note, total) {
       selectedOption:
         it.options?.type === "select" ? (it.options.choices?.[0] || "") : ""
     })),
-    cart: {} // { "itemId|option": { itemId, name, price, option, qty } }
+    cart: {}, // { "itemId|option": { itemId, name, price, option, qty } }
+    lastOrderNumber: null
   };
 
   function variantKey(item) {
@@ -103,16 +108,37 @@ function fmtOrderText(biz, cartLines, name, addr, note, total) {
     return getCartLines().reduce((s, l) => s + l.qty * l.price, 0);
   }
 
+  function getCustomerData() {
+    return {
+      name: document.getElementById("custName").value.trim(),
+      addr: document.getElementById("custAddr").value.trim(),
+      note: document.getElementById("custNote").value.trim()
+    };
+  }
+
+  function buildOrderTextForSheets(cartLines) {
+    // Formato compacto para la hoja
+    return cartLines.map((c) => `${c.qty} x ${c.name}${c.optionText || ""}`).join(", ");
+  }
+
   function updateWhatsLinks() {
     const cartLines = getCartLines();
     const total = getTotal();
     totalEl.textContent = money(total);
 
-    const name = document.getElementById("custName").value.trim();
-    const addr = document.getElementById("custAddr").value.trim();
-    const note = document.getElementById("custNote").value.trim();
+    const { name, addr, note } = getCustomerData();
 
-    const text = fmtOrderText(biz, cartLines, name, addr, note, total);
+    // OJO: aquí usamos state.lastOrderNumber si ya se guardó
+    const text = fmtOrderText(
+      biz,
+      cartLines,
+      name,
+      addr,
+      note,
+      total,
+      state.lastOrderNumber
+    );
+
     const link = buildWhatsLink(biz.whatsapp_e164, text);
 
     const topBtn = document.getElementById("whatsBtnTop");
@@ -126,43 +152,46 @@ function fmtOrderText(biz, cartLines, name, addr, note, total) {
       b.style.opacity = disabled ? "0.5" : "1";
       b.style.pointerEvents = disabled ? "none" : "auto";
     });
+  }
 
-    const sendBtn = document.getElementById("whatsBtn");
+  async function saveOrderToSheets() {
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PEGA_AQUI")) {
+      // No configurado
+      return { ok: false, reason: "NO_SCRIPT_URL" };
+    }
 
-sendBtn.onclick = async () => {
-  const cartLines = getCartLines();
-  if (cartLines.length === 0) return;
+    const cartLines = getCartLines();
+    if (cartLines.length === 0) return { ok: false, reason: "EMPTY_CART" };
 
-  const name = document.getElementById("custName").value.trim();
-  const addr = document.getElementById("custAddr").value.trim();
-  const note = document.getElementById("custNote").value.trim();
-  const total = getTotal();
+    const total = getTotal();
+    const { name, addr, note } = getCustomerData();
 
-  const orderText = cartLines
-    .map(c => `${c.qty} x ${c.name}${c.optionText}`)
-    .join(", ");
+    const payload = {
+      business: biz.name,
+      // También mandamos slug por si luego quieres separar por slug en vez de name
+      business_slug: slug,
+      customer: name,
+      address: addr,
+      note: note,
+      order: buildOrderTextForSheets(cartLines),
+      total: total
+    };
 
-  try {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-  method: "POST",
-  body: JSON.stringify({
-    business: biz.name,
-    customer: name,
-    address: addr,
-    note: note,
-    order: orderText,
-    total: total
-  })
-});
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        // Apps Script acepta body directo; no siempre requiere headers
+        body: JSON.stringify(payload)
+      });
 
-const result = await response.json();
+      // Si el Apps Script devuelve JSON con orderNumber
+      const result = await response.json().catch(() => ({}));
 
-if (result.orderNumber) {
-  alert("Pedido #" + result.orderNumber + " enviado correctamente");
-}
-};
-
-    
+      return { ok: true, result };
+    } catch (e) {
+      console.log("No se pudo guardar en Sheets:", e);
+      return { ok: false, reason: "NETWORK_ERROR" };
+    }
   }
 
   function renderMenu() {
@@ -182,7 +211,12 @@ if (result.orderNumber) {
                <select data-opt="select" data-idx="${idx}"
                  style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6">
                  ${(it.options.choices || [])
-                   .map((c) => `<option value="${c}" ${c === it.selectedOption ? "selected" : ""}>${c}</option>`)
+                   .map(
+                     (c) =>
+                       `<option value="${c}" ${
+                         c === it.selectedOption ? "selected" : ""
+                       }>${c}</option>`
+                   )
                    .join("")}
                </select>
              </div>`
@@ -217,6 +251,9 @@ if (result.orderNumber) {
       if (act === "inc") addToCart(item);
       if (act === "dec") removeFromCart(item);
 
+      // Al modificar carrito, invalidamos orderNumber anterior
+      state.lastOrderNumber = null;
+
       // Actualiza el numerito de la variante actual
       const key = variantKey(item);
       const qty = state.cart[key]?.qty || 0;
@@ -234,7 +271,10 @@ if (result.orderNumber) {
       const idx = Number(sel.dataset.idx);
       state.items[idx].selectedOption = sel.value;
 
-      // Al cambiar la opción, refresca el numerito de ESA variante
+      // Al cambiar opciones, invalidamos orderNumber anterior
+      state.lastOrderNumber = null;
+
+      // Refresca el numerito de la variante seleccionada
       const item = state.items[idx];
       const key = variantKey(item);
       const qty = state.cart[key]?.qty || 0;
@@ -271,10 +311,41 @@ if (result.orderNumber) {
     updateWhatsLinks();
   }
 
-  // Re-render WhatsApp al cambiar inputs
+  // Actualiza links cuando cambian inputs
   ["custName", "custAddr", "custNote"].forEach((id) => {
-    document.getElementById(id).addEventListener("input", () => updateWhatsLinks());
+    document.getElementById(id).addEventListener("input", () => {
+      // Si editan datos del pedido, invalidamos orderNumber anterior
+      state.lastOrderNumber = null;
+      updateWhatsLinks();
+    });
   });
+
+  // ===== Hook principal del botón: guardar en Sheets y luego WhatsApp =====
+  const sendBtn = document.getElementById("whatsBtn");
+  sendBtn.addEventListener("click", async () => {
+    const cartLines = getCartLines();
+    if (cartLines.length === 0) return;
+
+    // Guardamos primero
+    const saved = await saveOrderToSheets();
+    if (saved.ok && saved.result && saved.result.orderNumber) {
+      state.lastOrderNumber = saved.result.orderNumber;
+
+      // Actualiza link de WhatsApp para que incluya Pedido # (si aplica)
+      updateWhatsLinks();
+
+      // Feedback al cliente (opcional)
+      alert("Pedido #" + saved.result.orderNumber + " guardado. Se abrirá WhatsApp para enviarlo.");
+    } else {
+      // Si falla Sheets, seguimos abriendo WhatsApp normal (sin order #)
+      // No hacemos alert de error para no asustar al cliente
+      state.lastOrderNumber = null;
+      updateWhatsLinks();
+    }
+
+    // Nota: NO prevenimos navegación; el <a> abrirá WhatsApp con href actualizado.
+  });
+  // =======================================================================
 
   renderMenu();
   renderCart();
@@ -286,5 +357,3 @@ if (result.orderNumber) {
     <p>Ejemplo: <code>?biz=demo</code></p>
   </div>`;
 });
-
-
