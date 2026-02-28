@@ -16,10 +16,11 @@
           "label": "¿Que refresco",
           "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
         }
-    }
+    },
     { "name": "Agua horchata", "price": 25, "desc": "500 ml" }
   ]
 
 }
+
 
 
