@@ -5,7 +5,6 @@ const money = (n) =>
   new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(n);
 
 function getSlug() {
-  // URL esperada: /?biz=demo
   const url = new URL(location.href);
   return (url.searchParams.get("biz") || "demo").toLowerCase();
 }
@@ -42,28 +41,27 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
   return lines.join("\n");
 }
 
-(async function main() {
+(function () {
   const slug = getSlug();
-  const biz = await loadBusiness(slug);
 
-  // Header
-  document.getElementById("bizName").textContent = biz.name;
-  document.getElementById("bizSubtitle").textContent = biz.subtitle || "";
+  const bizNameEl = document.getElementById("bizName");
+  const bizSubtitleEl = document.getElementById("bizSubtitle");
 
   const menuEl = document.getElementById("menu");
   const cartEl = document.getElementById("cart");
   const totalEl = document.getElementById("total");
 
-  // Estado:
-  // - items: menú
-  // - cart: mapa por variante "itemId|option"
+  const topBtn = document.getElementById("whatsBtnTop");
+  const bottomBtn = document.getElementById("whatsBtn");
+
+  const inputName = document.getElementById("custName");
+  const inputPhone = document.getElementById("custPhone");
+  const inputAddr = document.getElementById("custAddr");
+  const inputNote = document.getElementById("custNote");
+
   const state = {
-    items: (biz.items || []).map((it, idx) => ({
-      id: it.id || `item_${idx}`, // id estable para variantes
-      ...it,
-      selectedOption:
-        it.options?.type === "select" ? (it.options.choices?.[0] || "") : ""
-    })),
+    biz: null,
+    items: [],
     cart: {}, // { "itemId|option": { itemId, name, price, option, qty } }
     lastOrderNumber: null
   };
@@ -108,11 +106,16 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
     return getCartLines().reduce((s, l) => s + l.qty * l.price, 0);
   }
 
+  function sanitizePhone(p) {
+    // Solo dígitos
+    return String(p || "").replace(/\D/g, "");
+  }
+
   function getCustomerData() {
-    const name = document.getElementById("custName")?.value?.trim() || "";
-    const phone = document.getElementById("custPhone")?.value?.trim() || "";
-    const addr = document.getElementById("custAddr")?.value?.trim() || "";
-    const note = document.getElementById("custNote")?.value?.trim() || "";
+    const name = (inputName?.value || "").trim();
+    const phone = sanitizePhone(inputPhone?.value || "");
+    const addr = (inputAddr?.value || "").trim();
+    const note = (inputNote?.value || "").trim();
     return { name, phone, addr, note };
   }
 
@@ -120,8 +123,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
     return cartLines.map((c) => `${c.qty} x ${c.name}${c.optionText || ""}`).join(", ");
   }
 
-  function updateTopButtonLinkPreview() {
-    // Solo para que el botón superior tenga href “preview” (sin # si aún no se guarda)
+  function updatePreviewLinks() {
     const cartLines = getCartLines();
     const total = getTotal();
     totalEl.textContent = money(total);
@@ -129,7 +131,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
     const { name, phone, addr, note } = getCustomerData();
 
     const text = fmtOrderText(
-      biz,
+      state.biz,
       cartLines,
       name,
       phone,
@@ -139,10 +141,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       state.lastOrderNumber
     );
 
-    const link = buildWhatsLink(biz.whatsapp_e164, text);
-
-    const topBtn = document.getElementById("whatsBtnTop");
-    const bottomBtn = document.getElementById("whatsBtn");
+    const link = buildWhatsLink(state.biz.whatsapp_e164, text);
 
     if (topBtn) topBtn.href = link;
     if (bottomBtn) bottomBtn.href = link;
@@ -166,10 +165,10 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
     const { name, phone, addr, note } = getCustomerData();
 
     const payload = {
-      business: biz.name,
+      business: state.biz.name,
       business_slug: slug,
       customer: name,
-      phone: phone, // ✅ NUEVO
+      phone: phone, // ✅ TELEFONO
       address: addr,
       note: note,
       order: buildOrderTextForSheets(cartLines),
@@ -182,7 +181,10 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
         body: JSON.stringify(payload)
       });
 
-      const result = await response.json().catch(() => ({}));
+      const resultText = await response.text();
+      let result = {};
+      try { result = JSON.parse(resultText); } catch (_) {}
+
       return { ok: true, result };
     } catch (e) {
       console.log("No se pudo guardar en Sheets:", e);
@@ -207,12 +209,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
                <select data-opt="select" data-idx="${idx}"
                  style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6">
                  ${(it.options.choices || [])
-                   .map(
-                     (c) =>
-                       `<option value="${c}" ${
-                         c === it.selectedOption ? "selected" : ""
-                       }>${c}</option>`
-                   )
+                   .map((c) => `<option value="${c}" ${c === it.selectedOption ? "selected" : ""}>${c}</option>`)
                    .join("")}
                </select>
              </div>`
@@ -235,7 +232,6 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       menuEl.appendChild(row);
     });
 
-    // Clicks +/-
     menuEl.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-act]");
       if (!btn) return;
@@ -247,10 +243,8 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       if (act === "inc") addToCart(item);
       if (act === "dec") removeFromCart(item);
 
-      // Al modificar carrito, invalidamos orderNumber anterior
       state.lastOrderNumber = null;
 
-      // Actualiza el numerito de la variante actual
       const key = variantKey(item);
       const qty = state.cart[key]?.qty || 0;
       const qtyEl = document.getElementById(`qty-${idx}`);
@@ -259,7 +253,6 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       renderCart();
     });
 
-    // Cambios en selects de opciones
     menuEl.addEventListener("change", (e) => {
       const sel = e.target.closest("select[data-opt='select']");
       if (!sel) return;
@@ -267,10 +260,8 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       const idx = Number(sel.dataset.idx);
       state.items[idx].selectedOption = sel.value;
 
-      // Al cambiar opciones, invalidamos orderNumber anterior
       state.lastOrderNumber = null;
 
-      // Refresca el numerito de la variante seleccionada
       const item = state.items[idx];
       const key = variantKey(item);
       const qty = state.cart[key]?.qty || 0;
@@ -287,7 +278,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
 
     if (cartLines.length === 0) {
       cartEl.innerHTML = `<p class="muted">Aún no agregas productos.</p>`;
-      updateTopButtonLinkPreview();
+      updatePreviewLinks();
       return;
     }
 
@@ -304,73 +295,79 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       cartEl.appendChild(r);
     });
 
-    updateTopButtonLinkPreview();
+    updatePreviewLinks();
   }
 
-  // Actualiza preview al cambiar inputs
-  ["custName", "custPhone", "custAddr", "custNote"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener("input", () => {
-      state.lastOrderNumber = null;
-      updateTopButtonLinkPreview();
-    });
-  });
+  async function handleSend(e) {
+    e.preventDefault();
+    const cartLines = getCartLines();
+    if (cartLines.length === 0) return;
 
-  // ===== Enviar: guardar primero, luego abrir WhatsApp con Pedido # =====
-  function attachSendHandler(btnId) {
-    const btn = document.getElementById(btnId);
-    if (!btn) return;
+    const saved = await saveOrderToSheets();
+    const orderNumber =
+      saved.ok && saved.result && saved.result.orderNumber
+        ? saved.result.orderNumber
+        : null;
 
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault();
+    state.lastOrderNumber = orderNumber;
 
-      const cartLines = getCartLines();
-      if (cartLines.length === 0) return;
+    const total = getTotal();
+    const { name, phone, addr, note } = getCustomerData();
 
-      const saved = await saveOrderToSheets();
-      const orderNumber =
-        saved.ok && saved.result && saved.result.orderNumber
-          ? saved.result.orderNumber
-          : null;
+    const finalText = fmtOrderText(
+      state.biz,
+      cartLines,
+      name,
+      phone,
+      addr,
+      note,
+      total,
+      orderNumber
+    );
 
-      state.lastOrderNumber = orderNumber;
+    const waLink = buildWhatsLink(state.biz.whatsapp_e164, finalText);
 
-      const total = getTotal();
-      const { name, phone, addr, note } = getCustomerData();
+    if (orderNumber) {
+      alert(`Pedido #${orderNumber} guardado. Se abrirá WhatsApp para enviarlo.`);
+    }
 
-      const finalText = fmtOrderText(
-        biz,
-        cartLines,
-        name,
-        phone,
-        addr,
-        note,
-        total,
-        orderNumber
-      );
+    window.open(waLink, "_blank", "noopener,noreferrer");
+  }
 
-      const waLink = buildWhatsLink(biz.whatsapp_e164, finalText);
+  function attachHandlers() {
+    [topBtn, bottomBtn].filter(Boolean).forEach((b) => b.addEventListener("click", handleSend));
 
-      if (orderNumber) {
-        alert(`Pedido #${orderNumber} guardado. Se abrirá WhatsApp para enviarlo.`);
-      }
-
-      window.open(waLink, "_blank", "noopener,noreferrer");
+    [inputName, inputPhone, inputAddr, inputNote].filter(Boolean).forEach((el) => {
+      el.addEventListener("input", () => {
+        state.lastOrderNumber = null;
+        updatePreviewLinks();
+      });
     });
   }
 
-  attachSendHandler("whatsBtn");     // botón principal
-  attachSendHandler("whatsBtnTop");  // botón superior
-  // ======================================================================
+  // Init
+  loadBusiness(slug)
+    .then((biz) => {
+      state.biz = biz;
+      bizNameEl.textContent = biz.name;
+      bizSubtitleEl.textContent = biz.subtitle || "";
 
-  renderMenu();
-  renderCart();
-})().catch((err) => {
-  document.body.innerHTML = `<div style="padding:16px;font-family:system-ui">
-    <h2>Error cargando negocio</h2>
-    <p>${String(err.message || err)}</p>
-    <p>Tip: asegúrate de tener <code>data/${getSlug()}.json</code>.</p>
-    <p>Ejemplo: <code>?biz=demo</code></p>
-  </div>`;
-});
+      state.items = (biz.items || []).map((it, idx) => ({
+        id: it.id || `item_${idx}`,
+        ...it,
+        selectedOption: it.options?.type === "select" ? (it.options.choices?.[0] || "") : ""
+      }));
+
+      attachHandlers();
+      renderMenu();
+      renderCart();
+    })
+    .catch((err) => {
+      document.body.innerHTML = `<div style="padding:16px;font-family:system-ui">
+        <h2>Error cargando negocio</h2>
+        <p>${String(err.message || err)}</p>
+        <p>Tip: asegúrate de tener <code>data/${getSlug()}.json</code>.</p>
+        <p>Ejemplo: <code>?biz=demo</code></p>
+      </div>`;
+    });
+})();
