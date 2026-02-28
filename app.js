@@ -322,29 +322,45 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
 
   // ===== Hook principal del botón: guardar en Sheets y luego WhatsApp =====
   const sendBtn = document.getElementById("whatsBtn");
-  sendBtn.addEventListener("click", async () => {
-    const cartLines = getCartLines();
-    if (cartLines.length === 0) return;
 
-    // Guardamos primero
-    const saved = await saveOrderToSheets();
-    if (saved.ok && saved.result && saved.result.orderNumber) {
-      state.lastOrderNumber = saved.result.orderNumber;
+sendBtn.addEventListener("click", async (e) => {
+  e.preventDefault(); // ✅ evita que el <a> abra WhatsApp con el href viejo
 
-      // Actualiza link de WhatsApp para que incluya Pedido # (si aplica)
-      updateWhatsLinks();
+  const cartLines = getCartLines();
+  if (cartLines.length === 0) return;
 
-      // Feedback al cliente (opcional)
-      alert("Pedido #" + saved.result.orderNumber + " guardado. Se abrirá WhatsApp para enviarlo.");
-    } else {
-      // Si falla Sheets, seguimos abriendo WhatsApp normal (sin order #)
-      // No hacemos alert de error para no asustar al cliente
-      state.lastOrderNumber = null;
-      updateWhatsLinks();
-    }
+  // Guardamos primero en Sheets
+  const saved = await saveOrderToSheets();
 
-    // Nota: NO prevenimos navegación; el <a> abrirá WhatsApp con href actualizado.
-  });
+  // Tomamos orderNumber si viene
+  const orderNumber = (saved.ok && saved.result && saved.result.orderNumber)
+    ? saved.result.orderNumber
+    : null;
+
+  // Construimos el texto FINAL para WhatsApp (con Pedido # si existe)
+  const total = getTotal();
+  const { name, addr, note } = getCustomerData();
+
+  const finalText = fmtOrderText(
+    biz,
+    cartLines,
+    name,
+    addr,
+    note,
+    total,
+    orderNumber
+  );
+
+  const waLink = buildWhatsLink(biz.whatsapp_e164, finalText);
+
+  // Feedback opcional
+  if (orderNumber) {
+    alert("Pedido #" + orderNumber + " guardado. Se abrirá WhatsApp para enviarlo.");
+  }
+
+  // Abrimos WhatsApp ahora con el texto correcto
+  window.open(waLink, "_blank", "noopener,noreferrer");
+});
   // =======================================================================
 
   renderMenu();
@@ -357,4 +373,5 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
     <p>Ejemplo: <code>?biz=demo</code></p>
   </div>`;
 });
+
 
