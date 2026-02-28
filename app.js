@@ -1,7 +1,6 @@
 // ====== CONFIG ======
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwS9VTlX0GOgxGlKCJ9vQeGhgLM9Z3K_lU1_hOG6TEYfPZ2wI-ZrNImwCivgYE2J0tn/exec"; // https://script.google.com/macros/s/XXX/exec
 // ====================
-
 const money = (n) =>
   new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(n);
 
@@ -22,7 +21,7 @@ function buildWhatsLink(phoneE164, text) {
   return `https://wa.me/${phoneE164}?text=${encoded}`;
 }
 
-function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
+function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumber) {
   const lines = [];
   lines.push(`*Nuevo pedido* — ${biz.name}`);
   if (orderNumber) lines.push(`*Pedido #${orderNumber}*`);
@@ -35,6 +34,7 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
   lines.push("");
   lines.push(`*Total:* ${money(total)}`);
   if (name) lines.push(`Nombre: ${name}`);
+  if (phone) lines.push(`Teléfono: ${phone}`);
   if (addr) lines.push(`Dirección: ${addr}`);
   if (note) lines.push(`Nota: ${note}`);
   lines.push("");
@@ -109,30 +109,30 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
   }
 
   function getCustomerData() {
-    return {
-      name: document.getElementById("custName").value.trim(),
-      addr: document.getElementById("custAddr").value.trim(),
-      note: document.getElementById("custNote").value.trim()
-    };
+    const name = document.getElementById("custName")?.value?.trim() || "";
+    const phone = document.getElementById("custPhone")?.value?.trim() || "";
+    const addr = document.getElementById("custAddr")?.value?.trim() || "";
+    const note = document.getElementById("custNote")?.value?.trim() || "";
+    return { name, phone, addr, note };
   }
 
   function buildOrderTextForSheets(cartLines) {
-    // Formato compacto para la hoja
     return cartLines.map((c) => `${c.qty} x ${c.name}${c.optionText || ""}`).join(", ");
   }
 
-  function updateWhatsLinks() {
+  function updateTopButtonLinkPreview() {
+    // Solo para que el botón superior tenga href “preview” (sin # si aún no se guarda)
     const cartLines = getCartLines();
     const total = getTotal();
     totalEl.textContent = money(total);
 
-    const { name, addr, note } = getCustomerData();
+    const { name, phone, addr, note } = getCustomerData();
 
-    // OJO: aquí usamos state.lastOrderNumber si ya se guardó
     const text = fmtOrderText(
       biz,
       cartLines,
       name,
+      phone,
       addr,
       note,
       total,
@@ -142,13 +142,13 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
     const link = buildWhatsLink(biz.whatsapp_e164, text);
 
     const topBtn = document.getElementById("whatsBtnTop");
-    const btn = document.getElementById("whatsBtn");
-    topBtn.href = link;
-    btn.href = link;
+    const bottomBtn = document.getElementById("whatsBtn");
 
-    // Bloqueo suave si carrito vacío
+    if (topBtn) topBtn.href = link;
+    if (bottomBtn) bottomBtn.href = link;
+
     const disabled = cartLines.length === 0;
-    [topBtn, btn].forEach((b) => {
+    [topBtn, bottomBtn].filter(Boolean).forEach((b) => {
       b.style.opacity = disabled ? "0.5" : "1";
       b.style.pointerEvents = disabled ? "none" : "auto";
     });
@@ -156,7 +156,6 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
 
   async function saveOrderToSheets() {
     if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PEGA_AQUI")) {
-      // No configurado
       return { ok: false, reason: "NO_SCRIPT_URL" };
     }
 
@@ -164,13 +163,13 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
     if (cartLines.length === 0) return { ok: false, reason: "EMPTY_CART" };
 
     const total = getTotal();
-    const { name, addr, note } = getCustomerData();
+    const { name, phone, addr, note } = getCustomerData();
 
     const payload = {
       business: biz.name,
-      // También mandamos slug por si luego quieres separar por slug en vez de name
       business_slug: slug,
       customer: name,
+      phone: phone, // ✅ NUEVO
       address: addr,
       note: note,
       order: buildOrderTextForSheets(cartLines),
@@ -180,13 +179,10 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        // Apps Script acepta body directo; no siempre requiere headers
         body: JSON.stringify(payload)
       });
 
-      // Si el Apps Script devuelve JSON con orderNumber
       const result = await response.json().catch(() => ({}));
-
       return { ok: true, result };
     } catch (e) {
       console.log("No se pudo guardar en Sheets:", e);
@@ -291,7 +287,7 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
 
     if (cartLines.length === 0) {
       cartEl.innerHTML = `<p class="muted">Aún no agregas productos.</p>`;
-      updateWhatsLinks();
+      updateTopButtonLinkPreview();
       return;
     }
 
@@ -308,60 +304,65 @@ function fmtOrderText(biz, cartLines, name, addr, note, total, orderNumber) {
       cartEl.appendChild(r);
     });
 
-    updateWhatsLinks();
+    updateTopButtonLinkPreview();
   }
 
-  // Actualiza links cuando cambian inputs
-  ["custName", "custAddr", "custNote"].forEach((id) => {
-    document.getElementById(id).addEventListener("input", () => {
-      // Si editan datos del pedido, invalidamos orderNumber anterior
+  // Actualiza preview al cambiar inputs
+  ["custName", "custPhone", "custAddr", "custNote"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("input", () => {
       state.lastOrderNumber = null;
-      updateWhatsLinks();
+      updateTopButtonLinkPreview();
     });
   });
 
-  // ===== Hook principal del botón: guardar en Sheets y luego WhatsApp =====
-  const sendBtn = document.getElementById("whatsBtn");
+  // ===== Enviar: guardar primero, luego abrir WhatsApp con Pedido # =====
+  function attachSendHandler(btnId) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
 
-sendBtn.addEventListener("click", async (e) => {
-  e.preventDefault(); // ✅ evita que el <a> abra WhatsApp con el href viejo
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
 
-  const cartLines = getCartLines();
-  if (cartLines.length === 0) return;
+      const cartLines = getCartLines();
+      if (cartLines.length === 0) return;
 
-  // Guardamos primero en Sheets
-  const saved = await saveOrderToSheets();
+      const saved = await saveOrderToSheets();
+      const orderNumber =
+        saved.ok && saved.result && saved.result.orderNumber
+          ? saved.result.orderNumber
+          : null;
 
-  // Tomamos orderNumber si viene
-  const orderNumber = (saved.ok && saved.result && saved.result.orderNumber)
-    ? saved.result.orderNumber
-    : null;
+      state.lastOrderNumber = orderNumber;
 
-  // Construimos el texto FINAL para WhatsApp (con Pedido # si existe)
-  const total = getTotal();
-  const { name, addr, note } = getCustomerData();
+      const total = getTotal();
+      const { name, phone, addr, note } = getCustomerData();
 
-  const finalText = fmtOrderText(
-    biz,
-    cartLines,
-    name,
-    addr,
-    note,
-    total,
-    orderNumber
-  );
+      const finalText = fmtOrderText(
+        biz,
+        cartLines,
+        name,
+        phone,
+        addr,
+        note,
+        total,
+        orderNumber
+      );
 
-  const waLink = buildWhatsLink(biz.whatsapp_e164, finalText);
+      const waLink = buildWhatsLink(biz.whatsapp_e164, finalText);
 
-  // Feedback opcional
-  if (orderNumber) {
-    alert("Pedido #" + orderNumber + " guardado. Se abrirá WhatsApp para enviarlo.");
+      if (orderNumber) {
+        alert(`Pedido #${orderNumber} guardado. Se abrirá WhatsApp para enviarlo.`);
+      }
+
+      window.open(waLink, "_blank", "noopener,noreferrer");
+    });
   }
 
-  // Abrimos WhatsApp ahora con el texto correcto
-  window.open(waLink, "_blank", "noopener,noreferrer");
-});
-  // =======================================================================
+  attachSendHandler("whatsBtn");     // botón principal
+  attachSendHandler("whatsBtnTop");  // botón superior
+  // ======================================================================
 
   renderMenu();
   renderCart();
@@ -373,5 +374,3 @@ sendBtn.addEventListener("click", async (e) => {
     <p>Ejemplo: <code>?biz=demo</code></p>
   </div>`;
 });
-
-
