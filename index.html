@@ -12,7 +12,7 @@
       <h1 id="bizName">Pedidos</h1>
       <p id="bizSubtitle" class="muted"></p>
     </div>
-    <a id="whatsBtnTop" class="btn btn-whats" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+    <a id="whatsBtnTop" class="btn btn-whats" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
   </header>
 
   <main class="grid">
@@ -29,12 +29,15 @@
         <label>Nombre (opcional)
           <input id="custName" placeholder="Ej. Pedro" />
         </label>
+
+        <label>Teléfono (opcional)
+          <input id="custPhone" placeholder="Ej. 5512345678" inputmode="numeric" />
+        </label>
+
         <label>Dirección / referencias (opcional)
           <input id="custAddr" placeholder="Ej. Centro, calle..." />
         </label>
-        <label> Telefono
-          <input id="custPhone" placeholder="Teléfono (opcional)" />
-        </label>
+
         <label>Nota (opcional)
           <input id="custNote" placeholder="Ej. sin cebolla" />
         </label>
@@ -44,11 +47,7 @@
         <div><span>Total:</span> <strong id="total">$0</strong></div>
       </div>
 
-      <div id="orderSuccess" style="display:none;color:#16a34a;margin-top:10px;font-weight:bold;">
-      Pedido enviado correctamente
-      </div>
-
-      <a id="whatsBtn" class="btn btn-whats" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      <a id="whatsBtn" class="btn btn-whats" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
       <p class="muted small">Al enviar, se abrirá WhatsApp con el pedido listo.</p>
     </aside>
   </main>
@@ -59,6 +58,4 @@
 
   <script src="app.js"></script>
 </body>
-
 </html>
-
