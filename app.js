@@ -143,20 +143,23 @@ sendBtn.onclick = async () => {
     .join(", ");
 
   try {
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      body: JSON.stringify({
-        business: biz.name,
-        customer: name,
-        address: addr,
-        note: note,
-        order: orderText,
-        total: total
-      })
-    });
-  } catch (e) {
-    console.log("No se pudo guardar", e);
-  }
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+  method: "POST",
+  body: JSON.stringify({
+    business: biz.name,
+    customer: name,
+    address: addr,
+    note: note,
+    order: orderText,
+    total: total
+  })
+});
+
+const result = await response.json();
+
+if (result.orderNumber) {
+  alert("Pedido #" + result.orderNumber + " enviado correctamente");
+}
 };
 
     
@@ -283,4 +286,5 @@ sendBtn.onclick = async () => {
     <p>Ejemplo: <code>?biz=demo</code></p>
   </div>`;
 });
+
 
