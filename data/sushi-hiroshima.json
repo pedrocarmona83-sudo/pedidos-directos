@@ -4,9 +4,46 @@
   "subtitle": "Escanea y ordena • Sin esperar",
   "whatsapp_e164": "5215545791802",
   "items": [
-    { "name": "Paquete 1", "price": 229, "desc": "1 Tempura de chocolate, 1 Gohan teriyaki de pollo, 1 Philadelphia cangrejo, 1 Refresco" },
-    { "name": "Paquete 2", "price": 229, "desc": "1 California tampico, 1 Arroz frito con verduras, 2 Brochetas de plátano con queso, 1 Refresco" },
-    { "name": "Paquete 3", "price": 244, "desc": "1 california de salmón, 1 Arroz frito c/ salsa tampico, 2 Brochetas de plátano con queso, 1 refresco" },
-    { "name": "Paquete 4", "price": 249, "desc": "1 Arroz frito c/pollo, camaron y res, 2 Brochetas de plátano con queso, 1 California de cangrejo, 1 refresco" }
+    { "name": "Paquete 1", 
+      "price": 229, 
+      "desc": "1 Tempura de chocolate, 1 Gohan teriyaki de pollo, 1 Philadelphia cangrejo, 1 Refresco",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Qué refresco?",
+          "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
+        }
+    },
+      
+    { "name": "Paquete 2", 
+      "price": 229, 
+      "desc": "1 California tampico, 1 Arroz frito con verduras, 2 Brochetas de plátano con queso, 1 Refresco",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Qué refresco?",
+          "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
+        }
+    },
+    { "name": "Paquete 3", 
+      "price": 244, 
+      "desc": "1 california de salmón, 1 Arroz frito c/ salsa tampico, 2 Brochetas de plátano con queso, 1 refresco",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Qué refresco?",
+          "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
+        }
+    },
+    { "name": "Paquete 4", 
+      "price": 249, 
+      "desc": "1 Arroz frito c/pollo, camaron y res, 2 Brochetas de plátano con queso, 1 California de cangrejo, 1 refresco",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Qué refresco?",
+          "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
+        }
+    }
   ]
 }
