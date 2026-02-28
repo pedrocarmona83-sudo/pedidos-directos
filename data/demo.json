@@ -7,8 +7,19 @@
     { "name": "Taco al pastor", "price": 18, "desc": "Con piña opcional" },
     { "name": "Taco suadero", "price": 20, "desc": "" },
     { "name": "Gringa", "price": 55, "desc": "Tortilla de harina" },
+    { "name": "Refresco", 
+      "price": 30, 
+      "desc": "355 ml",
+      "options":
+        {
+          "type": "select",
+          "label": "¿Que refresco",
+          "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
+        }
+    }
     { "name": "Agua horchata", "price": 25, "desc": "500 ml" }
   ]
 
 }
+
 
