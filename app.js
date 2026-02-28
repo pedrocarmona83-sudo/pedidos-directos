@@ -1,5 +1,5 @@
 // ====== CONFIG ======
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwS9VTlX0GOgxGlKCJ9vQeGhgLM9Z3K_lU1_hOG6TEYfPZ2wI-ZrNImwCivgYE2J0tn/exec"; // https://script.google.com/macros/s/XXX/exec
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOg9WDMxfVCjtqsJxnOBVVvW4Xg4v26osTAIMHtcfMgBBzL0aELzeUISDTAMxUiNbJ/exec"; // https://script.google.com/macros/s/XXX/exec
 // ====================
 const money = (n) =>
   new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(n);
@@ -371,3 +371,4 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       </div>`;
     });
 })();
+
