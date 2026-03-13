@@ -3,6 +3,8 @@
   "name": "Sushi-Hiroshima",
   "subtitle": "Escanea y ordena • Sin esperar",
   "whatsapp_e164": "5215545791802",
+  "hero_image":"/assets/hiroshima-hero.jpg",
+  "logo": "/assets/hiroshima-logo.png",
   "items": [
     { "name": "Paquete 1", 
       "price": 229, 
