@@ -6,9 +6,10 @@
   "hero_image":"assets/demofafeteria-hero.jpg",
   "logo": "/assets/democafeteria-logo.png",
   "items": [
-    { "name": "Taco al pastor", "price": 18, "desc": "Con piña opcional" },
-    { "name": "Taco suadero", "price": 20, "desc": "" },
-    { "name": "Gringa", "price": 55, "desc": "Tortilla de harina" },
+    { "name": "Espresso", "price": 20, "desc": "" },
+    { "name": "Espresso Doble", "price": 35, "desc": "" },
+    { "name": "Capuccino", "price": 55, "desc": "Tortilla de harina" },
+    { "name": "Latte", "price": 55, "desc": "Tortilla de harina" },
     { "name": "Refresco", 
       "price": 30, 
       "desc": "355 ml",
@@ -19,7 +20,7 @@
           "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
         }
     },
-    { "name": "Agua horchata", "price": 25, "desc": "500 ml" }
+    { "name": "Horchata", "price": 25, "desc": "500 ml" }
   ]
 
 }
