@@ -59,6 +59,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
   const slug = getSlug();
 
   const hero = document.getElementById("hero");
+  const bizLogoEl = document.getElementById("bizLogo");
   const bizNameEl = document.getElementById("bizName");
   const bizSubtitleEl = document.getElementById("bizSubtitle");
 
