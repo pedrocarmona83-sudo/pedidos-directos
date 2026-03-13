@@ -400,12 +400,19 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       bizNameEl.textContent = biz.name;
       bizSubtitleEl.textContent = biz.subtitle || "";
 
-      if (hero && biz.hero_image) {
-        hero.style.backgroundImage = `url("${biz.hero_image}")`;
-        hero.style.backgroundSize = "cover";
-        hero.style.backgroundPosition = "center";
-        hero.style.backgroundRepeat = "no-repeat";
-      }
+     if (hero && biz.hero_image) {
+  hero.style.backgroundImage = `url("${biz.hero_image}")`;
+  hero.style.backgroundSize = "cover";
+  hero.style.backgroundPosition = "center";
+  hero.style.backgroundRepeat = "no-repeat";
+}
+
+if (bizLogoEl && biz.logo) {
+  bizLogoEl.src = biz.logo;
+  bizLogoEl.style.display = "block";
+} else if (bizLogoEl) {
+  bizLogoEl.style.display = "none";
+}
 
       state.items = (biz.items || []).map((it, i) => ({
         id: it.id || `item_${i}`,
