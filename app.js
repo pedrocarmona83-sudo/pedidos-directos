@@ -444,95 +444,86 @@ function renderCart(){
 }
 
 
-function attachEvents(){
+function attachEvents() {
+  menuEl.onclick = (e) => {
+    // Si el click fue dentro de un select, no re-renderizar
+    if (e.target.closest("select")) {
+      return;
+    }
 
-menuEl.onclick=(e)=>{
+    const inc = e.target.dataset.inc;
+    const dec = e.target.dataset.dec;
 
-  const inc=e.target.dataset.inc;
+    if (inc !== undefined) {
+      addToCart(state.items[Number(inc)]);
+      state.lastOrderNumber = null;
+      renderMenu();
+      renderCart();
+      return;
+    }
 
-  const dec=e.target.dataset.dec;
+    if (dec !== undefined) {
+      removeFromCart(state.items[Number(dec)]);
+      state.lastOrderNumber = null;
+      renderMenu();
+      renderCart();
+      return;
+    }
+  };
 
-  if(inc){
+  // ✅ Guardar cambio de opción
+  menuEl.onchange = (e) => {
+    const idx = e.target.dataset.opt;
 
-    addToCart(
-      state.items[inc]
-    );
+    if (idx === undefined) return;
 
-  }
+    const item = state.items[Number(idx)];
+    item.selectedOption = e.target.value;
 
-  if(dec){
+    state.lastOrderNumber = null;
 
-    removeFromCart(
-      state.items[dec]
-    );
+    renderMenu();
+    renderCart();
+  };
 
-  }
+  [btnTop, btnBottom]
+    .filter(Boolean)
+    .forEach((btn) => {
+      btn.onclick = async (e) => {
+        e.preventDefault();
 
-  renderMenu();
+        const saved = await saveOrder();
+        const orderNumber = saved?.result?.orderNumber || null;
 
-  renderCart();
+        state.lastOrderNumber = orderNumber;
 
-};
+        const lines = getCartLines();
+        const total = getTotal();
 
+        const {
+          name,
+          phone,
+          addr,
+          note
+        } = getCustomerData();
 
-[btnTop,btnBottom]
-.filter(Boolean)
-.forEach(btn=>{
+        const text = fmtOrderText(
+          state.biz,
+          lines,
+          name,
+          phone,
+          addr,
+          note,
+          total,
+          orderNumber
+        );
 
-btn.onclick=
-async(e)=>{
-
-e.preventDefault();
-
-const saved=
-await saveOrder();
-
-const orderNumber=
-saved?.result?.orderNumber;
-
-state.lastOrderNumber=
-orderNumber;
-
-const lines=
-getCartLines();
-
-const total=
-getTotal();
-
-const{
-name,
-phone,
-addr,
-note
-}=getCustomerData();
-
-
-const text=
-fmtOrderText(
-state.biz,
-lines,
-name,
-phone,
-addr,
-note,
-total,
-orderNumber
-);
-
-
-window.open(
-buildWhatsLink(
-state.biz.whatsapp_e164,
-text
-),
-"_blank"
-);
-
-};
-
-});
-
-
+        window.open(
+          buildWhatsLink(state.biz.whatsapp_e164, text),
+          "_blank"
+        );
+      };
+    });
 }
 
 
