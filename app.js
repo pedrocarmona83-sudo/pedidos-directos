@@ -232,9 +232,32 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
   }
 
   function renderMenu() {
-    menuEl.innerHTML = "";
+  menuEl.innerHTML = "";
 
-    state.items.forEach((it, idx) => {
+  const grouped = {};
+
+  state.items.forEach((it, idx) => {
+    const category = (it.category || "General").trim();
+
+    if (!grouped[category]) {
+      grouped[category] = [];
+    }
+
+    grouped[category].push({ item: it, idx });
+  });
+
+  Object.keys(grouped).forEach((categoryName) => {
+    const section = document.createElement("div");
+    section.className = "menuSection";
+
+    const title = document.createElement("h3");
+    title.className = "menuSectionTitle";
+    title.textContent = categoryName;
+
+    const sectionItems = document.createElement("div");
+    sectionItems.className = "menuSectionItems";
+
+    grouped[categoryName].forEach(({ item: it, idx }) => {
       const key = variantKey(it);
       const qty = state.cart[key]?.qty || 0;
 
@@ -276,9 +299,14 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
         </div>
       `;
 
-      menuEl.appendChild(row);
+      sectionItems.appendChild(row);
     });
-  }
+
+    section.appendChild(title);
+    section.appendChild(sectionItems);
+    menuEl.appendChild(section);
+  });
+}
 
   function renderCart() {
     const lines = getCartLines();
