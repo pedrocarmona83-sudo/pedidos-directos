@@ -6,24 +6,42 @@
   "hero_image":"assets/demofafeteria-hero.jpg",
   "logo": "/assets/democafeteria-logo.png",
   "items": [
-    { "name": "Espresso", "price": 20, "desc": "" },
-    { "name": "Espresso Doble", "price": 35, "desc": "" },
-    { "name": "Capuccino", "price": 55, "desc": "" },
-    { "name": "Latte", "price": 55, "desc": "" },
-    { "name": "Refresco", 
-      "price": 30, 
-      "desc": "355 ml",
-      "options":
+    { "name": "Espresso"
+      , "price": 20
+      , "desc": "" 
+      , "category": "Babidas calientes"
+    },
+    { "name": "Espresso Doble"
+      , "price": 35
+      , "desc": "" 
+      , "category": "Babidas calientes"
+    },
+    { "name": "Capuccino"
+      , "price": 55
+      , "desc": ""
+      , "category": "Babidas calientes" 
+    },
+    { "name": "Latte"
+      , "price": 55
+      , "desc": "" 
+      , "category": "Babidas calientes"
+    },
+    { "name": "Refresco"
+      , "price": 30
+      , "desc": "355 ml"
+      , "category": "Babidas frias"
+      , "options":
         {
           "type": "select",
           "label": "¿Que refresco",
           "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
         }
     },
-    { "name": "Horchata", "price": 25, "desc": "500 ml" }
+    { "name": "Horchata"
+      , "price": 25
+      , "desc": "500 ml" 
+      , "category": "Babidas frias"
+    }
   ]
 
 }
-
-
-
