@@ -138,3 +138,22 @@ input { padding:10px; border-radius:12px; border:1px solid #1b2230; background:#
     font-size: 24px;
   }
 }
+
+.menuSection {
+  margin-bottom: 18px;
+}
+
+.menuSectionTitle {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #cfe3ff;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #1b2230;
+}
+
+.menuSectionItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
