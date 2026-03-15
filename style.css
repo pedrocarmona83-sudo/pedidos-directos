@@ -157,3 +157,40 @@ input { padding:10px; border-radius:12px; border:1px solid #1b2230; background:#
   flex-direction: column;
   gap: 10px;
 }
+
+.menuSection {
+  margin-bottom: 18px;
+}
+
+.menuSectionTitleBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: transparent;
+  border: 0;
+  padding: 0 0 8px;
+  margin: 0 0 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #1b2230;
+  color: #cfe3ff;
+}
+
+.menuSectionTitleText {
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.menuSectionChevron {
+  font-size: 16px;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.menuSectionItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
