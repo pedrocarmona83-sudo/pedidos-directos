@@ -1,0 +1,96 @@
+
+{
+  "name": "Casa Quintal",
+  "subtitle": "Pedidos por WhatsApp • Sin comisión",
+  "whatsapp_e164": "5215545151457",
+  "hero_image":"assets/casa_quintal-hero.jpg",
+  "logo": "/assets/casa_quintal-logo.png",
+  "items": [
+    { "name": "HOTCAKES DE VAINILLA"
+      , "price": 130
+      , "desc": "Con frutos rojos frescos, compota de frutos rojos y miel de maple." 
+      , "category": "PARA EMPEZAR"
+    },
+    { "name": "PAN FRANCÉS"
+      , "price": 120
+      , "desc": "De vainilla y frutos rojos frescos." 
+      , "category": "PARA EMPEZAR"
+    },
+    { "name": "BOWL DE FRUTA DE TEMPORADA"
+      , "price": 90
+      , "desc": "Con granola y yogurt natural."
+      , "category": "PARA EMPEZAR" 
+    },
+    { "name": "OMELETTE DE CHILAQUILES"
+      , "price": 230
+      , "desc": "Relleno de queso y pollo acompañado de chilaquiles y frijoles refritos." 
+      , "category": "DESAYUNOS"
+    },
+    { "name": "ENFRICHULADAS"
+      , "price": 205
+      , "desc": "Rellenas de pollo bañadas en salsa de frijol con polvo de chicharrón y chorizo, coronadas con aguacate."
+      , "category": "DESAYUNOS"
+    },
+    { "name": "NI SANTO NI POBLANO"
+      , "price": 180
+      , "desc": "Nopal relleno de queso panela y ensalada de verdolagas, guarnición de frijoles refritos." 
+      , "category": "DESAYUNOS"
+    }, 
+    { "name": "TACOS DORADOS DE BARBACOA"
+      , "price": 210
+      , "desc": "Sobre espejo de salsa de pasilla, nopales salteados con orégano, aguacate y cebolla morada." 
+      , "category": "DESAYUNOS"
+    }, 
+    { "name": "OMELETTE DE HUAUZONTLES"
+      , "price": 210
+      , "desc": "Con queso Oaxaca, sobre un espejo de salsa roja y guarnición de ensalsada de." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "HUEVOS DE LA CASA"
+      , "price": 210
+      , "desc": "Estrellados sobre pan de vino tinto, jitomate guisado, jamón serrano y aguacate." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "OMELETTE DE SERRANO Y MOZZARELLA"
+      , "price": 200
+      , "desc": "Relleno de jamón serrano, queso mozzarella fresco, ensalada de arúgula" 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "HUEVOS MOTULEÑOS"
+      , "price": 225
+      , "desc": "Huevos motuleños bañados en salsa roja, acompañados con plátano macho, chícharo y jamón." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "HUEVOS BENEDICTINOS"
+      , "price": 275
+      , "desc": "Pochados sobre pan brioche, bañados en salsa holandesa, puré de papa y ensalada de arúgula." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "HUEVOS POCHÉ"
+      , "price": 205
+      , "desc": "Sobre pan de vino tinto y espinaca bañados con salsa bechamel." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "TAPAS DE AGUACATE"
+      , "price": 225
+      , "desc": "Dos huevos sobre pan de vino tinto, salsa pomodoro, aguacate y ensalada." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "HUEVOS AL GUSTO"
+      , "price": 165
+      , "desc": "Pídelos a la mexicana o con tocino o chorizo o jamón." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "OMELETTE MILPA"
+      , "price": 195
+      , "desc": "Relleno de huitlacoche y queso acompañado de verdolagas sobre un espejo de mole." 
+      , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "OMELETTE LIGERO"
+      , "price": 180
+      , "desc": "De claras, relleno de espinacas y queso panela con guarnición de verduras de temporada." 
+      , "category": "HUEVOS Y OMELETTE"
+    }
+  ]
+
+}
