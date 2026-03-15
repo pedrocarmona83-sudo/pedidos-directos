@@ -90,6 +90,46 @@
       , "price": 180
       , "desc": "De claras, relleno de espinacas y queso panela con guarnición de verduras de temporada." 
       , "category": "HUEVOS Y OMELETTE"
+    }, 
+    { "name": "CHILAQUILES NEGROS C/HUEVO"
+      , "price": 180
+      , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category": "CON TORTILLA"
+    }, 
+    { "name": "CHILAQUILES NEGROS C/POLLO"
+      , "price": 200
+      , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category": "CON TORTILLA"
+    }, 
+    { "name": "CHILAQUILES NEGROS C/BISTEC"
+      , "price": 225
+      , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category": "CON TORTILLA"
+    }, 
+    { "name": "CHILAQUILES NEGROS C/BARBACOA"
+      , "price": 225
+      , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category": "CON TORTILLA"
+    }, 
+    { "name": "ENCHILADAS TRES MARÍAS"
+      , "price": 200
+      , "desc": "Rellenas de pollo o queso, bañadas en tres salsas; verde, roja y mole." 
+      , "category": "CON TORTILLA"
+    }, 
+    { "name": "ENCHILADAS TRES MARÍAS"
+      , "price": 200
+      , "desc": "Rellenas de pollo o queso, bañadas en tres salsas; verde, roja y mole." 
+      , "category": "CON TORTILLA"
+    }, 
+    { "name": "ENCHILADAS"
+      , "price": 180
+      , "desc": "Rellenas de pollo o queso, bañadas en salsa verde, roja o pasilla." 
+      , "category": "CON TORTILLA"
+    }, 
+    { "name": "ENMOLADAS"
+      , "price": 200
+      , "desc": "Rellenas de pollo o queso, bañadas de mole manchamanteles." 
+      , "category": "CON TORTILLA"
     }
   ]
 
