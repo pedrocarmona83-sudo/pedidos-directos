@@ -232,82 +232,90 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
     }
   }
 
-  function renderMenu() {
-    menuEl.innerHTML = "";
+function renderMenu() {
+  menuEl.innerHTML = "";
 
-    const grouped = {};
+  const grouped = {};
 
-    state.items.forEach((it, idx) => {
-      const category = (it.category || "General").trim();
+  state.items.forEach((it, idx) => {
+    const category = (it.category || "General").trim();
 
-      if (!grouped[category]) {
-        grouped[category] = [];
-      }
+    if (!grouped[category]) {
+      grouped[category] = [];
+    }
 
-      grouped[category].push({ item: it, idx });
+    grouped[category].push({ item: it, idx });
+  });
+
+  Object.keys(grouped).forEach((categoryName) => {
+    const isCollapsed = !!state.collapsedCategories[categoryName];
+
+    const section = document.createElement("div");
+    section.className = "menuSection";
+
+    const titleBtn = document.createElement("button");
+    titleBtn.type = "button";
+    titleBtn.className = "menuSectionTitleBtn";
+    titleBtn.dataset.categoryToggle = categoryName;
+    titleBtn.innerHTML = `
+      <span class="menuSectionTitleText">${categoryName}</span>
+      <span class="menuSectionChevron">${isCollapsed ? "▸" : "▾"}</span>
+    `;
+
+    const sectionItems = document.createElement("div");
+    sectionItems.className = "menuSectionItems";
+    sectionItems.style.display = isCollapsed ? "none" : "flex";
+
+    grouped[categoryName].forEach(({ item: it, idx }) => {
+      const key = variantKey(it);
+      const qty = state.cart[key]?.qty || 0;
+
+      const row = document.createElement("div");
+      row.className = "item";
+
+      const optionsHtml =
+        it.options?.type === "select"
+          ? `
+            <div style="margin-top:8px">
+              <label class="muted small">${it.options.label || "Opciones"}</label>
+              <select
+                data-opt="${idx}"
+                style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6"
+              >
+                ${(it.options.choices || [])
+                  .map(
+                    (c) =>
+                      `<option value="${c}" ${c === it.selectedOption ? "selected" : ""}>${c}</option>`
+                  )
+                  .join("")}
+              </select>
+            </div>
+          `
+          : "";
+
+      row.innerHTML = `
+        <div style="min-width:0">
+          <strong>${it.name}</strong>
+          ${it.desc ? `<div class="muted small">${it.desc}</div>` : ""}
+          <div class="price">${money(it.price)}</div>
+          ${optionsHtml}
+        </div>
+
+        <div class="controls">
+          <button class="btn btn-sm btn-ghost" type="button" data-dec="${idx}">−</button>
+          <div class="qty">${qty}</div>
+          <button class="btn btn-sm btn-ghost" type="button" data-inc="${idx}">+</button>
+        </div>
+      `;
+
+      sectionItems.appendChild(row);
     });
 
-    Object.keys(grouped).forEach((categoryName) => {
-      const section = document.createElement("div");
-      section.className = "menuSection";
-
-      const title = document.createElement("h3");
-      title.className = "menuSectionTitle";
-      title.textContent = categoryName;
-
-      const sectionItems = document.createElement("div");
-      sectionItems.className = "menuSectionItems";
-
-      grouped[categoryName].forEach(({ item: it, idx }) => {
-        const key = variantKey(it);
-        const qty = state.cart[key]?.qty || 0;
-
-        const row = document.createElement("div");
-        row.className = "item";
-
-        const optionsHtml =
-          it.options?.type === "select"
-            ? `
-              <div style="margin-top:8px">
-                <label class="muted small">${it.options.label || "Opciones"}</label>
-                <select
-                  data-opt="${idx}"
-                  style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6"
-                >
-                  ${(it.options.choices || [])
-                    .map(
-                      (c) =>
-                        `<option value="${c}" ${c === it.selectedOption ? "selected" : ""}>${c}</option>`
-                    )
-                    .join("")}
-                </select>
-              </div>
-            `
-            : "";
-
-        row.innerHTML = `
-          <div style="min-width:0">
-            <strong>${it.name}</strong>
-            ${it.desc ? `<div class="muted small">${it.desc}</div>` : ""}
-            <div class="price">${money(it.price)}</div>
-            ${optionsHtml}
-          </div>
-
-          <div class="controls">
-            <button class="btn btn-sm btn-ghost" type="button" data-dec="${idx}">−</button>
-            <div class="qty">${qty}</div>
-            <button class="btn btn-sm btn-ghost" type="button" data-inc="${idx}">+</button>
-          </div>
-        `;
-
-        sectionItems.appendChild(row);
-      });
-
-      section.appendChild(title);
-      section.appendChild(sectionItems);
-      menuEl.appendChild(section);
-    });
-  }
+    section.appendChild(titleBtn);
+    section.appendChild(sectionItems);
+    menuEl.appendChild(section);
+  });
+}
 
   function renderCart() {
     const lines = getCartLines();
