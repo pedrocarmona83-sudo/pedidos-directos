@@ -111,16 +111,6 @@
       , "desc": "Salsa de frijol con un toque de salsa morita." 
       , "category": "CON TORTILLA"
     }, 
-    { "name": "ENCHILADAS TRES MARÍAS"
-      , "price": 200
-      , "desc": "Rellenas de pollo o queso, bañadas en tres salsas; verde, roja y mole." 
-      , "category": "CON TORTILLA"
-    }, 
-    { "name": "ENCHILADAS TRES MARÍAS"
-      , "price": 200
-      , "desc": "Rellenas de pollo o queso, bañadas en tres salsas; verde, roja y mole." 
-      , "category": "CON TORTILLA"
-    }, 
     { "name": "ENCHILADAS"
       , "price": 180
       , "desc": "Rellenas de pollo o queso, bañadas en salsa verde, roja o pasilla." 
@@ -130,6 +120,327 @@
       , "price": 200
       , "desc": "Rellenas de pollo o queso, bañadas de mole manchamanteles." 
       , "category": "CON TORTILLA"
+    },
+    { "name": "CHILAQUILES C/HUEVO", 
+      "price": 180, 
+      "desc": "",
+      "category": "CON TORTILLA",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Cómo quieres tus chilaquiles?",
+          "choices": ["Verdes", "Rojos", "Pasilla"]
+        }
+    }, 
+    { "name": "CHILAQUILES C/POLLO", 
+      "price": 200, 
+      "desc": "",
+      "category": "CON TORTILLA",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Cómo quieres tus chilaquiles?",
+          "choices": ["Verdes", "Rojos", "Pasilla"]
+        }
+    }, 
+    { "name": "CHILAQUILES C/BARBACOA", 
+      "price": 225, 
+      "desc": "",
+      "category": "CON TORTILLA",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Cómo quieres tus chilaquiles?",
+          "choices": ["Verdes", "Rojos", "Pasilla"]
+        }
+    }, 
+    { "name": "CHILAQUILES C/BISTEC", 
+      "price": 225, 
+      "desc": "",
+      "category": "CON TORTILLA",
+      "options": 
+        {
+          "type": "select",
+          "label": "¿Cómo quieres tus chilaquiles?",
+          "choices": ["Verdes", "Rojos", "Pasilla"]
+        }
+    }, 
+    { "name": "MOLLETES"
+      , "price": 150
+      , "desc": "Pídelos sencillos, con jamón, tocino, chorizo o combinados. Acompañados de pico de gallo." 
+      , "category": "MOLLETES"
+      , "options": 
+        {
+          "type": "select",
+          "label": "¿Cómo los quieres?",
+          "choices": ["Con jamón", "Con tocino", "Con chorizo", "Combinados"]
+        }
+    },
+    { "name": "MOLLETES BAÑADOS"
+      , "price": 170
+      , "desc": "Molletes bañados en crema de pimiento rostizado." 
+      , "category": "MOLLETES"
+    },
+    { "name": "OMELETTE MINI"
+      , "price": 120
+      , "desc": "PRelleno de queso, acompáñalo de jamón, tocino o pollo. Se sirven sólo para niños de hasta 12 años. Se sirven de 8 a 12:30 horas" 
+      , "category": "PARA LOS PEQUEÑOS"
+      , "options": 
+        {
+          "type": "select",
+          "label": "¿Cómo los quieres?",
+          "choices": ["Con jamón", "Con tocino", "Con pollo"]
+        }
+    },
+    { "name": "NIDO MARQUESITA"
+      , "price": 70
+      , "desc": "Con queso crema, crema de avellana y queso bola rallado." 
+      , "category": "PANADERÍA"
+    },
+    { "name": "NIDO"
+      , "price": 55
+      , "desc": "Nido de hojaldre de guayaba o blueberry y queso crema." 
+      , "category": "PANADERÍA"
+    },
+    { "name": "NIDO DE TIRAMISÚ"
+      , "price": 75
+      , "desc": "Con soleta bañada en espresso y crema de tiramisú." 
+      , "category": "PANADERÍA"
+    },
+    { "name": "NIDO SELVA NEGRA"
+      , "price": 75
+      , "desc": "Con crema de mascarpone, ganache de chocolate, mermelada de cereza." 
+      , "category": "PANADERÍA"
+    },
+    { "name": "ROLL DE PISTACHE"
+      , "price": 55
+      , "desc": "Con crema de pistache, decorado con glaseado y pistache espolvoreado." 
+      , "category": "PANADERÍA"
+    },
+    { "name": "TARTA DE CHOCOLATE"
+      , "price": 55
+      , "desc": "Ganache de chocolate amargo y pistache, con frutos rojos." 
+      , "category": "PANADERÍA"
+    },
+    { "name": "CHEESECAKE VASCO"
+      , "price": 105
+      , "desc": "De queso de cabra y queso crema, decorado con frutos rojos." 
+      , "category": "PANADERÍA"
+    },
+    { "name": "ENSALADA DE ARÚGULA Y PROSCIUTTO"
+      , "price": 150
+      , "desc": "Arúgula, queso parmigiano reggiano, prosciutto, jitomate cherry y vinagreta." 
+      , "category": "ENTRADAS"
+    },
+    { "name": "CAMOTES A LA FRANCESA"
+      , "price": 100
+      , "desc": "Bastones de camote acompañados de un dip de queso de cabra." 
+      , "category": "ENTRADAS"
+    },
+    { "name": "PAPAS GAJO"
+      , "price": 100
+      , "desc": "Papas corte gajo con aderezo kajun." 
+      , "category": "ENTRADAS"
+    },
+    { "name": "ENSALADA CAPRESSE"
+      , "price": 110
+      , "desc": "Rebanadas de jitomate con queso mozzarella sobre pesto y albahaca fresca." 
+      , "category": "ENTRADAS"
+    },
+    { "name": "ENSALADA RÚSTICA "
+      , "price": 140
+      , "desc": "Mix de lechugas orgánicas con aderezo a base de anchoas y aceituna, crotones y pechuga de pollo." 
+      , "category": "ENTRADAS"
+    },
+    { "name": "PANINO DE PORTOBELLO"
+      , "price": 165
+      , "desc": "Relleno de portobellos salteados, gratinado con quesos mozzarella y cabra." 
+      , "category": "PANINOS"
+    },
+    { "name": "PANINO DE PROSCIUTTO"
+      , "price": 175
+      , "desc": "Relleno de prosciutto, mozarrella y arúgula fresca." 
+      , "category": "PANINOS"
+    },
+    { "name": "PANINO DE POLLO"
+      , "price": 175
+      , "desc": "Relleno de pechuga de pollo, mozzarella, jitomate y lechuga." 
+      , "category": "PANINOS"
+    },
+    { "name": "LASAÑA DE ESPINACA"
+      , "price": 145
+      , "desc": "Rellena de espinaca y queso mozzarella, coronada con queso parmesano reggiano." 
+      , "category": "PASTAS"
+    },
+    { "name": "PASTA AL PESTO"
+      , "price": 170
+      , "desc": "Pasta corta salteada con pesto, acompañada con queso parmesano."
+      , "category": "PASTAS"
+    },
+    { "name": "ALFREDO"
+      , "price": 150
+      , "desc": "Base de salsa blanca cremosa de ajo y parmesano." 
+      , "category": "PASTAS"
+    },
+    { "name": "CARBONARA"
+      , "price": 185
+      , "desc": "Pasta larga cremada con huevo mantequilla y parmesano, acompañada de tocino frito." 
+      , "category": "PASTAS"
+    },
+    { "name": "PASTA CON ARRACHERA"
+      , "price": 190
+      , "desc": "Pasta con salsa de chipotle, arrachera y parmesano." 
+      , "category": "PASTAS"
+    },
+    { "name": "TAGLEATELLI DI MARE"
+      , "price": 200
+      , "desc": "Camarones y pulpo salteados, mix de hongos y albahaca cremada con mantequilla y ajo." 
+      , "category": "PASTAS"
+    },
+    { "name": "BOLOÑESA"
+      , "price": 180
+      , "desc": "Pasta con salsa raggú tradicional coronada con parmesano." 
+      , "category": "PASTAS"
+    },
+     { "name": "PIZZA DE PERA"
+      , "price": 300
+      , "desc": "Pizza de pera, queso gorgozola y proscuitto." 
+      , "category": "PIZZA"
+    },
+    { "name": "PIZZA DE CAFÉ"
+      , "price": 275 
+      , "desc": "Masa de café, mozzarella, chorizo argentino y arúgula. (Disponible de viernes a domingo)" 
+      , "category": "PIZZA"
+    },
+    { "name": "MARGARITA NAPOLITANA"
+      , "price": 240
+      , "desc": "Pizza clásica con jitomate, queso mozzarella fresco y albahaca." 
+      , "category": "PIZZA"
+    },
+    { "name": "GAMBERI CIPOLLINA"
+      , "price": 340
+      , "desc": "Queso mozzarella, camarones bañados en salsa de limón y cebollín." 
+      , "category": "PIZZA"
+    },
+    { "name": "PIZZA ALFREDO"
+      , "price": 300
+      , "desc": "Base de salsa blanca, mix de hongos y tocino. Coronada con arúgula y jitomate deshidratado." 
+      , "category": "PIZZA"
+    },
+    { "name": "FROMAGGI"
+      , "price": 275
+      , "desc": "Salsa pomodoro, quesos mozzarella, gorgonzola, cabra y provolone." 
+      , "category": "PIZZA"
+    },
+    { "name": "SALAMI PICANTE"
+      , "price": 275
+      , "desc": "Base de salsa pomodoro, queso mozzarella y salami picante." 
+      , "category": "PIZZA"
+    },
+    { "name": "QUATTRO STAGIONI"
+      , "price": 240
+      , "desc": "Salsa pomodoro, corazón de alcachofa, jamón, aceituna negra y champiñón." 
+      , "category": "PIZZA"
+    },
+    { "name": "HONGOS Y ALBAHACA"
+      , "price": 260
+      , "desc": "Base de salsa pomodoro, mix de hongos y cebolla morada perfumada con albahaca." 
+      , "category": "PIZZA"
+    },
+    { "name": "PIZZA DE ARRACHERA"
+      , "price": 345
+      , "desc": "Acompañada de cebolla blanca, chile cuaresmeño y arrachera marinada." 
+      , "category": "PIZZA"
+    },
+    { "name": "PIZZA DE POLLO"
+      , "price": 300
+      , "desc": "Con pimiento, cebolla morada y pechuga de pollo marinada." 
+      , "category": "PIZZA"
+    },
+      { "name": "SALMÓN A LA TOSCANA"
+      , "price": 280
+      , "desc": "Filete de salmón bañado en una salsa de queso parmesano y espinacas." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "SALMÓN EN CREMA DE CHAMPIÑON"
+      , "price": 280
+      , "desc": "Filete de salmón bañado en una salsa de champiñón." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "HAMBURGUESA DE RES"
+      , "price": 220
+      , "desc": "Con queso mozarella y guarnición de chips de papa." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "TACOS DE ARRACHERA"
+      , "price": 230
+      , "desc": "(300 grs) de arrachera con guacamole y papas gajo." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "RIBEYE"
+      , "price": 265
+      , "desc": "Corte de 300 grs. servido con nopales cebolla cambray guacamole y un volcán de queso." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "ARRACHERA A LA PLANCHA"
+      , "price": 240
+      , "desc": "Corte de 300 gramos, acompañada de guacamole y papas gajo." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "SALMÓN EN SALSA DE LIMÓN"
+      , "price": 270
+      , "desc": "Salmón a la plancha, crema de espinaca y limón. Coronado con espárragos y almendra fileteada." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "PECHUGA A LA PLANCHA"
+      , "price": 190
+      , "desc": "Acompañada de papas gajo y ensalada fresca." 
+      , "category": "PLATOS FUERTES"
+    },
+    { "name": "MINI PIZZA DE PEPPERONI"
+      , "price": 130
+      , "desc": "Acompañada de papas gajo y ensalada fresca." 
+      , "category": "MENÚ INFANTIL"
+    },
+    { "name": "MINI ESPAGUETTI"
+      , "price": 130
+      , "desc": "Acompañada de papas gajo y ensalada fresca." 
+      , "category": "MENÚ INFANTIL"
+    },
+    { "name": "PECHUGA DE POLLO CON PAPAS A LA FRANCESA"
+      , "price": 130
+      , "desc": "Acompañada de papas gajo y ensalada fresca." 
+      , "category": "MENÚ INFANTIL"
+    },
+     { "name": "CROSTATA DE MANZANA Y PERA"
+      , "price": 145
+      , "desc": "De manzana y pera a la mantequilla con queso de cabra y helado de haba tonka." 
+      , "category": "POSTRES"
+    },
+      { "name": "POSTRE ESPRESSO"
+      , "price": 95
+      , "desc": "Hecho con helado Quintal, un espresso y crema batida." 
+      , "category": "POSTRES"
+    },
+      { "name": "TIRAMISÚ"
+      , "price": 110
+      , "desc": "Postre en vaso elaborado a base de queso mascarpone y café de la casa." 
+      , "category": "POSTRES"
+    },
+      { "name": "PANACOTA ITALIANA"
+      , "price": 110
+      , "desc": "A base de una crema dulce con vaina de vainilla y compota de frutos rojos." 
+      , "category": "POSTRES"
+    },
+      { "name": "MINIPIZZA DE CREMA DE AVELLANA"
+      , "price": 110
+      , "desc": "Acompañada de fresa fresca y frutos rojos. Decorada con almendra fileteada." 
+      , "category": "POSTRES"
+    },
+      { "name": "DULCE QUINTAL"
+      , "price": 110
+      , "desc": "Frutos rojos con hierbabuena, cubiertos con crema y almendras caramelizadas." 
+      , "category": "POSTRES"
     }
   ]
 
