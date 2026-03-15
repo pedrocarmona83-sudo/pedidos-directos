@@ -232,81 +232,81 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
   }
 
   function renderMenu() {
-  menuEl.innerHTML = "";
+    menuEl.innerHTML = "";
 
-  const grouped = {};
+    const grouped = {};
 
-  state.items.forEach((it, idx) => {
-    const category = (it.category || "General").trim();
+    state.items.forEach((it, idx) => {
+      const category = (it.category || "General").trim();
 
-    if (!grouped[category]) {
-      grouped[category] = [];
-    }
+      if (!grouped[category]) {
+        grouped[category] = [];
+      }
 
-    grouped[category].push({ item: it, idx });
-  });
-
-  Object.keys(grouped).forEach((categoryName) => {
-    const section = document.createElement("div");
-    section.className = "menuSection";
-
-    const title = document.createElement("h3");
-    title.className = "menuSectionTitle";
-    title.textContent = categoryName;
-
-    const sectionItems = document.createElement("div");
-    sectionItems.className = "menuSectionItems";
-
-    grouped[categoryName].forEach(({ item: it, idx }) => {
-      const key = variantKey(it);
-      const qty = state.cart[key]?.qty || 0;
-
-      const row = document.createElement("div");
-      row.className = "item";
-
-      const optionsHtml =
-        it.options?.type === "select"
-          ? `
-            <div style="margin-top:8px">
-              <label class="muted small">${it.options.label || "Opciones"}</label>
-              <select
-                data-opt="${idx}"
-                style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6"
-              >
-                ${(it.options.choices || [])
-                  .map(
-                    (c) =>
-                      `<option value="${c}" ${c === it.selectedOption ? "selected" : ""}>${c}</option>`
-                  )
-                  .join("")}
-              </select>
-            </div>
-          `
-          : "";
-
-      row.innerHTML = `
-        <div style="min-width:0">
-          <strong>${it.name}</strong>
-          ${it.desc ? `<div class="muted small">${it.desc}</div>` : ""}
-          <div class="price">${money(it.price)}</div>
-          ${optionsHtml}
-        </div>
-
-        <div class="controls">
-          <button class="btn btn-sm btn-ghost" type="button" data-dec="${idx}">−</button>
-          <div class="qty">${qty}</div>
-          <button class="btn btn-sm btn-ghost" type="button" data-inc="${idx}">+</button>
-        </div>
-      `;
-
-      sectionItems.appendChild(row);
+      grouped[category].push({ item: it, idx });
     });
 
-    section.appendChild(title);
-    section.appendChild(sectionItems);
-    menuEl.appendChild(section);
-  });
-}
+    Object.keys(grouped).forEach((categoryName) => {
+      const section = document.createElement("div");
+      section.className = "menuSection";
+
+      const title = document.createElement("h3");
+      title.className = "menuSectionTitle";
+      title.textContent = categoryName;
+
+      const sectionItems = document.createElement("div");
+      sectionItems.className = "menuSectionItems";
+
+      grouped[categoryName].forEach(({ item: it, idx }) => {
+        const key = variantKey(it);
+        const qty = state.cart[key]?.qty || 0;
+
+        const row = document.createElement("div");
+        row.className = "item";
+
+        const optionsHtml =
+          it.options?.type === "select"
+            ? `
+              <div style="margin-top:8px">
+                <label class="muted small">${it.options.label || "Opciones"}</label>
+                <select
+                  data-opt="${idx}"
+                  style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6"
+                >
+                  ${(it.options.choices || [])
+                    .map(
+                      (c) =>
+                        `<option value="${c}" ${c === it.selectedOption ? "selected" : ""}>${c}</option>`
+                    )
+                    .join("")}
+                </select>
+              </div>
+            `
+            : "";
+
+        row.innerHTML = `
+          <div style="min-width:0">
+            <strong>${it.name}</strong>
+            ${it.desc ? `<div class="muted small">${it.desc}</div>` : ""}
+            <div class="price">${money(it.price)}</div>
+            ${optionsHtml}
+          </div>
+
+          <div class="controls">
+            <button class="btn btn-sm btn-ghost" type="button" data-dec="${idx}">−</button>
+            <div class="qty">${qty}</div>
+            <button class="btn btn-sm btn-ghost" type="button" data-inc="${idx}">+</button>
+          </div>
+        `;
+
+        sectionItems.appendChild(row);
+      });
+
+      section.appendChild(title);
+      section.appendChild(sectionItems);
+      menuEl.appendChild(section);
+    });
+  }
 
   function renderCart() {
     const lines = getCartLines();
@@ -428,19 +428,19 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       bizNameEl.textContent = biz.name;
       bizSubtitleEl.textContent = biz.subtitle || "";
 
-     if (hero && biz.hero_image) {
-  hero.style.backgroundImage = `url("${biz.hero_image}")`;
-  hero.style.backgroundSize = "cover";
-  hero.style.backgroundPosition = "center";
-  hero.style.backgroundRepeat = "no-repeat";
-}
+      if (hero && biz.hero_image) {
+        hero.style.backgroundImage = `url("${biz.hero_image}")`;
+        hero.style.backgroundSize = "cover";
+        hero.style.backgroundPosition = "center";
+        hero.style.backgroundRepeat = "no-repeat";
+      }
 
-if (bizLogoEl && biz.logo) {
-  bizLogoEl.src = biz.logo;
-  bizLogoEl.style.display = "block";
-} else if (bizLogoEl) {
-  bizLogoEl.style.display = "none";
-}
+      if (bizLogoEl && biz.logo) {
+        bizLogoEl.src = biz.logo;
+        bizLogoEl.style.display = "block";
+      } else if (bizLogoEl) {
+        bizLogoEl.style.display = "none";
+      }
 
       state.items = (biz.items || []).map((it, i) => ({
         id: it.id || `item_${i}`,
