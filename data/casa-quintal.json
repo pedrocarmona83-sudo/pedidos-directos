@@ -441,6 +441,317 @@
       , "price": 110
       , "desc": "Frutos rojos con hierbabuena, cubiertos con crema y almendras caramelizadas." 
       , "category": "POSTRES"
+    },
+      { "name": "MICTLÁN"
+      , "price": 115
+      , "desc": "Bebida a base mezcla de jamaica, azahar, mezcal, chile de árbol. Ahumado con manzana y canela." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "MOR LAVANDA"
+      , "price": 165
+      , "desc": "Coctel a base de lavanda ginebra y gengibre." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "MIMOSA"
+      , "price": 90
+      , "desc": "Bebida fresca a base de jugo de naranja y vino blanco espumoso." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "UN TRAGO"
+      , "price": 95
+      , "desc": "Coctel de maceración de piña con sal de gusano y mezcal." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "GIN TRADICIONAL"
+      , "price": 215
+      , "desc": "Coctel tradicional de Gin cítrico." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "GIN FRUTOS ROJOS"
+      , "price": 250
+      , "desc": "Cóctel de gin floral con frambuesa, mora azul, zarzamora, arándanos y un toque de cereza." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "GIN CÍTRICOS"
+      , "price": 250
+      , "desc": "Cóctel de gin de cítricos y de gin floral, con un toque de limón Eureka, jengibre y menta." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "BELLEZA OSCURA"
+      , "price": 180
+      , "desc": "Típica paloma, com el toque de la Casa, tequila con limón Eureka, romero y carbón activado." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "ORO CÍTRICO"
+      , "price": 165
+      , "desc": "Cóctel de whisky, limón Eureka y aromatizado con romero." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "PADRE SANTO"
+      , "price": 175
+      , "desc": "Cóctel de mezcal, macerado con hoja santa, cítricos y un toque de tortilla picante." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "EL DIABLO"
+      , "price": 165
+      , "desc": "Cóctel de mezcal con combinación de genuino tamarindo y chocolate." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "SHOT DE MEZCAL"
+      , "price": 95
+      , "desc": "Mezcal tradicional oaxaqueño." 
+      , "category": "BEBIDAS DE LA CASA"
+    },
+      { "name": "CAPUCCINO ITALIANO"
+      , "price": 60
+      , "desc": "Café con leche cremada." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "ESPRESSO PRÍNCIPE"
+      , "price": 90
+      , "desc": "Espresso con crema batida y canela." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "ESPRESSO"
+      , "price": 50
+      , "desc": "Shot de una onza de café. Cuerpo sedoso y sabores expresivos." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "ESPRESSO DOBLE"
+      , "price": 60
+      , "desc": "Shot de dos onzas de café. Cuerpo sedoso y sabores expresivos." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "ESPRESSO DE LA CASA"
+      , "price": 75
+      , "desc": "Mezcla de café espresso y genuino chocolate oaxaqueño." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "LATTE PRALINÉ DE AVELLANA"
+      , "price": 110
+      , "desc": "Latte tradicional coronado con un praliné de chocolate y avellana." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "MACCHIATO"
+      , "price": 60
+      , "desc": "Espresso cortado con un toque de leche." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "FLAT WHITE"
+      , "price": 60
+      , "desc": "Café con leche donde el sabor lácteo predomina al del espresso." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "LATTE NATURAL"
+      , "price": 70
+      , "desc": "Café con leche cremada." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "LATTE QUINTAL"
+      , "price": 110
+      , "desc": "Bebida estrella de Casa. Café con leche, chocolate blanco y chocolate oscuro." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "LATTE MOKA"
+      , "price": 90
+      , "desc": "Café con leche acompañado con chocolate." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "LATTE CARAMELO"
+      , "price": 85
+      , "desc": "Café con leche con un toque de caramelo." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "LATTE GREEN TEA"
+      , "price": 85
+      , "desc": "Bebida a base de matcha y leche cremada." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "CHAI DE LA CASA"
+      , "price": 105
+      , "desc": "Té chai con leche con un toque de vainilla. Acompañado de nuez trozada." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "CHOCOLATE DE LA CASA"
+      , "price": 90
+      , "desc": "Genuino chocolate oaxaqueño 70% cacao y 30% azúcar. Pídelo con base de agua o leche." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "HORCHATA CALIENTE"
+      , "price": 100
+      , "desc": "Bebida de horchata con leche acompañada de nuez trozada." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "V60"
+      , "price": 60
+      , "desc": "Café tipó americano extraido con un V60" 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "TIZANA CALIENTE"
+      , "price": 75
+      , "desc": "Tizana frutal de moras o fresas." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "TETERA TIZANA RELAX"
+      , "price": 70
+      , "desc": "Té con sabores similares a la flor de asar, escaramujo y manzanilla." 
+      , "category": "BEBIDAS CALIENTES"
+    },
+      { "name": "SMOOTHIE DE MANGO"
+      , "price": 85
+      , "desc": "Bebida helada sabor mango." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "CARAJILLO"
+      , "price": 120
+      , "desc": "Mezcla de café espresso y un shot de alcohol del 43." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "JUGO DE NARANJA"
+      , "price": 45
+      , "desc": "" 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "JUGO VERDE"
+      , "price": 50
+      , "desc": "Jugo de apio, perejil, miel, espinaca, naranaja, piña y cilantro" 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "JUGO DE LA CASA"
+      , "price": 50
+      , "desc": "Jugo a base de fresa, piña, guayaba y un toque de naranja." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "LIMONADA"
+      , "price": 60
+      , "desc": "Pídela natural o mineral." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "NARANJADA"
+      , "price": 60
+      , "desc": "Pídela natural o mineral." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "CORAZÓN QUINTAL"
+      , "price": 95
+      , "desc": "Bebida helada de blue curaçao." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "SMOOTHIE DE BERRIES"
+      , "price": 95
+      , "desc": "Bebida helada de frutos rojos acompañado de crema batida." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "SMOOTHIE DE COCO"
+      , "price": 85
+      , "desc": "Bebida helada de coco, adornada de frutos rojos de temporada." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "SMOOTHIE DE GUAYABA"
+      , "price": 
+      , "desc": "Bebida helada de guayaba, acompañada de frutos rojos de temporada." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "FRAPPÉ DE MOKA"
+      , "price": 110
+      , "desc": "Bebida helada a base de café y chocolate, coronada con crema batida." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "FRAPPÉ DE GALLETA"
+      , "price": 120
+      , "desc": "Bebida helada a base de galleta Oreo® y café, coronada con crema batida." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "FRAPPÉ NATURAL"
+      , "price": 110
+      , "desc": "Bebida helada de café con leche. Se acompaña con crema batida." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "FRAPPÉ DE CARAMELO"
+      , "price": 105
+      , "desc": "Bebida helada de café, leche y caramelo." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "FREPPÉ GREEN TEA"
+      , "price": 105
+      , "desc": "Bebida helada a base de matcha y leche, coronada de crema batida." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "FRAPPÉ CHAI DE LA CASA"
+      , "price": 110
+      , "desc": "Bebida helada de té verde, leche, jarabe de banana y nuez." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "HORCHATA FRÍA"
+      , "price": 115
+      , "desc": "Bebida de leche, horchata y nuez trozada." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "MOJITO"
+      , "price": 90
+      , "desc": "Bebida fresca sin alcohol sabor piña, limón, menta y agua mineral." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "MARACUYÁ"
+      , "price": 90
+      , "desc": "Bebida fresca a base de maracuyá, acompañada de fresa." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "TISANA FRÍA"
+      , "price": 85
+      , "desc": "Bebida de fresa kiwi o moras." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "COLD BREW"
+      , "price": 70
+      , "desc": "Extracción de café en frío de varias horas." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "HORCHATA CON COLD BREW"
+      , "price": 120
+      , "desc": "Bebida fría de horchata con extracción en frío de café." 
+      , "category": "BEBIDAS FRÍAS"
+    },
+      { "name": "REFRESCO EN LATA"
+      , "price": 35 
+      , "desc": "" 
+      , "category": "BEBIDAS FRÍAS"
+      , "options": 
+        {
+          "type": "select",
+          "label": "¿Qué refresco?",
+          "choices": ["Coca", "Coca light", "Mineral", "Boing mango", "Boing guayaba", "Manzana"]
+        }
+    },
+      { "name": "8ALMAS MEZCAL"
+      , "price": 110
+      , "desc": "Cerveza ámbar con aroma de caramelo quemado y sabor a mezcal 350 ml" 
+      , "category": "CERVEZA"
+    },
+      { "name": "8ALMAS CAFÉ Y CHOCOLATE"
+      , "price": 85
+      , "desc": "Cerveza ámbar con aroma de caramelo quemado y sabor a café y chocolate 350 ml" 
+      , "category": "CERVEZA"
+    },
+      { "name": "CORONITA EXTRA"
+      , "price": 35
+      , "desc": "210 ml" 
+      , "category": "CERVEZA"
+    },
+      { "name": "STELLA ARTOIS"
+      , "price": 55
+      , "desc": "330 ml" 
+      , "category": "CERVEZA"
+    },
+      { "name": "JARRA DE CLERICOTT"
+      , "price": 340
+      , "desc": "" 
+      , "category": "CLERICOTT"
+    },
+      { "name": "JARRA DE CLERICOTT C/VINO A ELEGIR"
+      , "price": 450
+      , "desc": "" 
+      , "category": "CLERICOTT"
     }
   ]
 
