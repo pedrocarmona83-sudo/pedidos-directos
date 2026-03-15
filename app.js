@@ -344,92 +344,99 @@ function renderMenu() {
   }
 
   function attachEvents() {
-    menuEl.onclick = (e) => {
-      if (e.target.closest("select")) {
-        return;
-      }
+  menuEl.onclick = (e) => {
+    const toggleBtn = e.target.closest("[data-category-toggle]");
+    if (toggleBtn) {
+      const categoryName = toggleBtn.dataset.categoryToggle;
+      state.collapsedCategories[categoryName] = !state.collapsedCategories[categoryName];
+      renderMenu();
+      return;
+    }
 
-      const inc = e.target.dataset.inc;
-      const dec = e.target.dataset.dec;
+    if (e.target.closest("select")) {
+      return;
+    }
 
-      if (inc !== undefined) {
-        addToCart(state.items[Number(inc)]);
-        state.lastOrderNumber = null;
-        renderMenu();
-        renderCart();
-        return;
-      }
+    const inc = e.target.dataset.inc;
+    const dec = e.target.dataset.dec;
 
-      if (dec !== undefined) {
-        removeFromCart(state.items[Number(dec)]);
-        state.lastOrderNumber = null;
-        renderMenu();
-        renderCart();
-        return;
-      }
-    };
-
-    menuEl.onchange = (e) => {
-      const idx = e.target.dataset.opt;
-
-      if (idx === undefined) return;
-
-      const item = state.items[Number(idx)];
-      item.selectedOption = e.target.value;
-
+    if (inc !== undefined) {
+      addToCart(state.items[Number(inc)]);
       state.lastOrderNumber = null;
       renderMenu();
       renderCart();
-    };
+      return;
+    }
 
-    [btnTop, btnBottom]
-      .filter(Boolean)
-      .forEach((btn) => {
-        btn.onclick = async (e) => {
-          e.preventDefault();
+    if (dec !== undefined) {
+      removeFromCart(state.items[Number(dec)]);
+      state.lastOrderNumber = null;
+      renderMenu();
+      renderCart();
+      return;
+    }
+  };
 
-          const cartLines = getCartLines();
-          if (!cartLines.length) return;
+  menuEl.onchange = (e) => {
+    const idx = e.target.dataset.opt;
 
-          const saved = await saveOrder();
-          const orderNumber = saved?.result?.orderNumber || null;
+    if (idx === undefined) return;
 
-          state.lastOrderNumber = orderNumber;
+    const item = state.items[Number(idx)];
+    item.selectedOption = e.target.value;
 
-          const total = getTotal();
-          const { name, phone, addr, note } = getCustomerData();
+    state.lastOrderNumber = null;
+    renderMenu();
+    renderCart();
+  };
 
-          const text = fmtOrderText(
-            state.biz,
-            cartLines,
-            name,
-            phone,
-            addr,
-            note,
-            total,
-            orderNumber
-          );
+  [btnTop, btnBottom]
+    .filter(Boolean)
+    .forEach((btn) => {
+      btn.onclick = async (e) => {
+        e.preventDefault();
 
-          const waLink = buildWhatsLink(state.biz.whatsapp_e164, text);
+        const cartLines = getCartLines();
+        if (!cartLines.length) return;
 
-          if (orderNumber) {
-            alert(`Pedido #${orderNumber} guardado. Se abrirá WhatsApp para enviarlo.`);
-          }
+        const saved = await saveOrder();
+        const orderNumber = saved?.result?.orderNumber || null;
 
-          window.open(waLink, "_blank", "noopener,noreferrer");
-        };
+        state.lastOrderNumber = orderNumber;
+
+        const total = getTotal();
+        const { name, phone, addr, note } = getCustomerData();
+
+        const text = fmtOrderText(
+          state.biz,
+          cartLines,
+          name,
+          phone,
+          addr,
+          note,
+          total,
+          orderNumber
+        );
+
+        const waLink = buildWhatsLink(state.biz.whatsapp_e164, text);
+
+        if (orderNumber) {
+          alert(`Pedido #${orderNumber} guardado. Se abrirá WhatsApp para enviarlo.`);
+        }
+
+        window.open(waLink, "_blank", "noopener,noreferrer");
+      };
+    });
+
+  [inputName, inputPhone, inputAddr, inputNote]
+    .filter(Boolean)
+    .forEach((input) => {
+      input.addEventListener("input", () => {
+        state.lastOrderNumber = null;
+        updatePreviewLinks();
       });
-
-    [inputName, inputPhone, inputAddr, inputNote]
-      .filter(Boolean)
-      .forEach((input) => {
-        input.addEventListener("input", () => {
-          state.lastOrderNumber = null;
-          updatePreviewLinks();
-        });
-      });
-  }
-
+    });
+}
   loadBusiness(slug)
     .then((biz) => {
       state.biz = biz;
