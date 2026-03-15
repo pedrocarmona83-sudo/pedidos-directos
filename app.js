@@ -80,6 +80,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
     items: [],
     cart: {},
     lastOrderNumber: null
+    collapsedCategories:{}
   };
 
   function variantKey(item) {
