@@ -855,37 +855,37 @@
       { "name": "8ALMAS MEZCAL"
       , "price": 110
       , "desc": "Cerveza ámbar con aroma de caramelo quemado y sabor a mezcal 350 ml" 
-      , "category_image": "assets/cat-casaq-cerveza.jpg"
+      , "category_image": "assets/cat-casaq-bebidas-cerveza.jpg"
       , "category": "CERVEZA"
     },
       { "name": "8ALMAS CAFÉ Y CHOCOLATE"
       , "price": 85
       , "desc": "Cerveza ámbar con aroma de caramelo quemado y sabor a café y chocolate 350 ml" 
-      , "category_image": "assets/cat-casaq-cerveza.jpg"
+      , "category_image": "assets/cat-casaq-bebidas-cerveza.jpg"
       , "category": "CERVEZA"
     },
       { "name": "CORONITA EXTRA"
       , "price": 35
       , "desc": "210 ml"
-      , "category_image": "assets/cat-casaq-cerveza.jpg"
+      , "category_image": "assets/cat-casaq-bebidas-cerveza.jpg"
       , "category": "CERVEZA"
     },
       { "name": "STELLA ARTOIS"
       , "price": 55
       , "desc": "330 ml" 
-      , "category_image": "assets/cat-casaq-cerveza.jpg"
+      , "category_image": "assets/cat-casaq-bebidas-cerveza.jpg"
       , "category": "CERVEZA"
     },
       { "name": "JARRA DE CLERICOTT"
       , "price": 340
       , "desc": "" 
-      , "category_image": "assets/cat-casaq-clericot.jpg"
+      , "category_image": "assets/cat-casaq-bebidas-clericot.jpg"
       , "category": "CLERICOTT"
     },
       { "name": "JARRA DE CLERICOTT C/VINO A ELEGIR"
       , "price": 450
       , "desc": "" 
-      , "category_image": "assets/cat-casaq-clericot.jpg"
+      , "category_image": "assets/cat-casaq-bebidas-clericot.jpg"
       , "category": "CLERICOTT"
     }
   ]
