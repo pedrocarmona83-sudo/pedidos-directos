@@ -52,86 +52,103 @@
     { "name": "OMELETTE DE HUAUZONTLES"
       , "price": 210
       , "desc": "Con queso Oaxaca, sobre un espejo de salsa roja y guarnición de ensalsada de." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "HUEVOS DE LA CASA"
       , "price": 210
       , "desc": "Estrellados sobre pan de vino tinto, jitomate guisado, jamón serrano y aguacate." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "OMELETTE DE SERRANO Y MOZZARELLA"
       , "price": 200
       , "desc": "Relleno de jamón serrano, queso mozzarella fresco, ensalada de arúgula" 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "HUEVOS MOTULEÑOS"
       , "price": 225
       , "desc": "Huevos motuleños bañados en salsa roja, acompañados con plátano macho, chícharo y jamón." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "HUEVOS BENEDICTINOS"
       , "price": 275
       , "desc": "Pochados sobre pan brioche, bañados en salsa holandesa, puré de papa y ensalada de arúgula." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "HUEVOS POCHÉ"
       , "price": 205
       , "desc": "Sobre pan de vino tinto y espinaca bañados con salsa bechamel." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "TAPAS DE AGUACATE"
       , "price": 225
       , "desc": "Dos huevos sobre pan de vino tinto, salsa pomodoro, aguacate y ensalada." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "HUEVOS AL GUSTO"
       , "price": 165
       , "desc": "Pídelos a la mexicana o con tocino o chorizo o jamón." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "OMELETTE MILPA"
       , "price": 195
       , "desc": "Relleno de huitlacoche y queso acompañado de verdolagas sobre un espejo de mole." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "OMELETTE LIGERO"
       , "price": 180
       , "desc": "De claras, relleno de espinacas y queso panela con guarnición de verduras de temporada." 
+      , "category_image": "assets/cat-casaq-omelette.jpg"
       , "category": "HUEVOS Y OMELETTE"
     }, 
     { "name": "CHILAQUILES NEGROS C/HUEVO"
       , "price": 180
       , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category_image": "assets/cat-casaq-tortilla.jpg"
       , "category": "CON TORTILLA"
     }, 
     { "name": "CHILAQUILES NEGROS C/POLLO"
       , "price": 200
       , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category_image": "assets/cat-casaq-tortilla.jpg"
       , "category": "CON TORTILLA"
     }, 
     { "name": "CHILAQUILES NEGROS C/BISTEC"
       , "price": 225
       , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category_image": "assets/cat-casaq-tortilla.jpg"
       , "category": "CON TORTILLA"
     }, 
     { "name": "CHILAQUILES NEGROS C/BARBACOA"
       , "price": 225
       , "desc": "Salsa de frijol con un toque de salsa morita." 
+      , "category_image": "assets/cat-casaq-tortilla.jpg"
       , "category": "CON TORTILLA"
     }, 
     { "name": "ENCHILADAS"
       , "price": 180
       , "desc": "Rellenas de pollo o queso, bañadas en salsa verde, roja o pasilla." 
+      , "category_image": "assets/cat-casaq-tortilla.jpg"
       , "category": "CON TORTILLA"
     }, 
     { "name": "ENMOLADAS"
       , "price": 200
       , "desc": "Rellenas de pollo o queso, bañadas de mole manchamanteles." 
+      , "category_image": "assets/cat-casaq-tortilla.jpg"
       , "category": "CON TORTILLA"
     },
     { "name": "CHILAQUILES C/HUEVO", 
       "price": 180, 
       "desc": "",
+      "category_image": "assets/cat-casaq-tortilla.jpg",
       "category": "CON TORTILLA",
       "options": 
         {
@@ -143,6 +160,7 @@
     { "name": "CHILAQUILES C/POLLO", 
       "price": 200, 
       "desc": "",
+      "category_image": "assets/cat-casaq-tortilla.jpg",
       "category": "CON TORTILLA",
       "options": 
         {
@@ -154,6 +172,7 @@
     { "name": "CHILAQUILES C/BARBACOA", 
       "price": 225, 
       "desc": "",
+      "category_image": "assets/cat-casaq-tortilla.jpg",
       "category": "CON TORTILLA",
       "options": 
         {
@@ -166,6 +185,7 @@
       "price": 225, 
       "desc": "",
       "category": "CON TORTILLA",
+      "category_image": "assets/cat-casaq-tortilla.jpg",
       "options": 
         {
           "type": "select",
@@ -176,6 +196,7 @@
     { "name": "MOLLETES"
       , "price": 150
       , "desc": "Pídelos sencillos, con jamón, tocino, chorizo o combinados. Acompañados de pico de gallo." 
+      , "category_image": "assets/cat-casaq-molletes.jpg"
       , "category": "MOLLETES"
       , "options": 
         {
@@ -187,6 +208,7 @@
     { "name": "MOLLETES BAÑADOS"
       , "price": 170
       , "desc": "Molletes bañados en crema de pimiento rostizado." 
+      , "category_image": "assets/cat-casaq-molletes.jpg"
       , "category": "MOLLETES"
     },
     { "name": "OMELETTE MINI"
@@ -203,61 +225,73 @@
     { "name": "NIDO MARQUESITA"
       , "price": 70
       , "desc": "Con queso crema, crema de avellana y queso bola rallado." 
+      , "category_image": "assets/cat-casaq-panaderia.jpg"
       , "category": "PANADERÍA"
     },
     { "name": "NIDO"
       , "price": 55
       , "desc": "Nido de hojaldre de guayaba o blueberry y queso crema." 
+      , "category_image": "assets/cat-casaq-panaderia.jpg"
       , "category": "PANADERÍA"
     },
     { "name": "NIDO DE TIRAMISÚ"
       , "price": 75
       , "desc": "Con soleta bañada en espresso y crema de tiramisú." 
+      , "category_image": "assets/cat-casaq-panaderia.jpg"
       , "category": "PANADERÍA"
     },
     { "name": "NIDO SELVA NEGRA"
       , "price": 75
       , "desc": "Con crema de mascarpone, ganache de chocolate, mermelada de cereza." 
+      , "category_image": "assets/cat-casaq-panaderia.jpg"
       , "category": "PANADERÍA"
     },
     { "name": "ROLL DE PISTACHE"
       , "price": 55
       , "desc": "Con crema de pistache, decorado con glaseado y pistache espolvoreado." 
+      , "category_image": "assets/cat-casaq-panaderia.jpg"
       , "category": "PANADERÍA"
     },
     { "name": "TARTA DE CHOCOLATE"
       , "price": 55
       , "desc": "Ganache de chocolate amargo y pistache, con frutos rojos." 
+      , "category_image": "assets/cat-casaq-panaderia.jpg"
       , "category": "PANADERÍA"
     },
     { "name": "CHEESECAKE VASCO"
       , "price": 105
       , "desc": "De queso de cabra y queso crema, decorado con frutos rojos." 
+      , "category_image": "assets/cat-casaq-panaderia.jpg"
       , "category": "PANADERÍA"
     },
     { "name": "ENSALADA DE ARÚGULA Y PROSCIUTTO"
       , "price": 150
       , "desc": "Arúgula, queso parmigiano reggiano, prosciutto, jitomate cherry y vinagreta." 
+      , "category_image": "assets/cat-casaq-entradas.jpg"
       , "category": "ENTRADAS"
     },
     { "name": "CAMOTES A LA FRANCESA"
       , "price": 100
       , "desc": "Bastones de camote acompañados de un dip de queso de cabra." 
+      , "category_image": "assets/cat-casaq-entradas.jpg"
       , "category": "ENTRADAS"
     },
     { "name": "PAPAS GAJO"
       , "price": 100
       , "desc": "Papas corte gajo con aderezo kajun." 
+      , "category_image": "assets/cat-casaq-entradas.jpg"
       , "category": "ENTRADAS"
     },
     { "name": "ENSALADA CAPRESSE"
       , "price": 110
       , "desc": "Rebanadas de jitomate con queso mozzarella sobre pesto y albahaca fresca." 
+      , "category_image": "assets/cat-casaq-entradas.jpg"
       , "category": "ENTRADAS"
     },
     { "name": "ENSALADA RÚSTICA "
       , "price": 140
       , "desc": "Mix de lechugas orgánicas con aderezo a base de anchoas y aceituna, crotones y pechuga de pollo." 
+      , "category_image": "assets/cat-casaq-entradas.jpg"
       , "category": "ENTRADAS"
     },
     { "name": "PANINO DE PORTOBELLO"
@@ -278,131 +312,157 @@
     { "name": "LASAÑA DE ESPINACA"
       , "price": 145
       , "desc": "Rellena de espinaca y queso mozzarella, coronada con queso parmesano reggiano." 
+      , "category_image": "assets/cat-casaq-pastas.jpg"
       , "category": "PASTAS"
     },
     { "name": "PASTA AL PESTO"
       , "price": 170
       , "desc": "Pasta corta salteada con pesto, acompañada con queso parmesano."
+      , "category_image": "assets/cat-casaq-pastas.jpg"
       , "category": "PASTAS"
     },
     { "name": "ALFREDO"
       , "price": 150
       , "desc": "Base de salsa blanca cremosa de ajo y parmesano." 
+      , "category_image": "assets/cat-casaq-pastas.jpg"
       , "category": "PASTAS"
     },
     { "name": "CARBONARA"
       , "price": 185
-      , "desc": "Pasta larga cremada con huevo mantequilla y parmesano, acompañada de tocino frito." 
+      , "desc": "Pasta larga cremada con huevo mantequilla y parmesano, acompañada de tocino frito."
+      , "category_image": "assets/cat-casaq-pastas.jpg"
       , "category": "PASTAS"
     },
     { "name": "PASTA CON ARRACHERA"
       , "price": 190
       , "desc": "Pasta con salsa de chipotle, arrachera y parmesano." 
+      , "category_image": "assets/cat-casaq-pastas.jpg"
       , "category": "PASTAS"
     },
     { "name": "TAGLEATELLI DI MARE"
       , "price": 200
       , "desc": "Camarones y pulpo salteados, mix de hongos y albahaca cremada con mantequilla y ajo." 
+      , "category_image": "assets/cat-casaq-pastas.jpg"
       , "category": "PASTAS"
     },
     { "name": "BOLOÑESA"
       , "price": 180
       , "desc": "Pasta con salsa raggú tradicional coronada con parmesano." 
+      , "category_image": "assets/cat-casaq-pastas.jpg"
       , "category": "PASTAS"
     },
      { "name": "PIZZA DE PERA"
       , "price": 300
       , "desc": "Pizza de pera, queso gorgozola y proscuitto." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "PIZZA DE CAFÉ"
       , "price": 275 
       , "desc": "Masa de café, mozzarella, chorizo argentino y arúgula. (Disponible de viernes a domingo)" 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "MARGARITA NAPOLITANA"
       , "price": 240
       , "desc": "Pizza clásica con jitomate, queso mozzarella fresco y albahaca." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "GAMBERI CIPOLLINA"
       , "price": 340
       , "desc": "Queso mozzarella, camarones bañados en salsa de limón y cebollín." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "PIZZA ALFREDO"
       , "price": 300
       , "desc": "Base de salsa blanca, mix de hongos y tocino. Coronada con arúgula y jitomate deshidratado." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "FROMAGGI"
       , "price": 275
       , "desc": "Salsa pomodoro, quesos mozzarella, gorgonzola, cabra y provolone." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "SALAMI PICANTE"
       , "price": 275
       , "desc": "Base de salsa pomodoro, queso mozzarella y salami picante." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "QUATTRO STAGIONI"
       , "price": 240
       , "desc": "Salsa pomodoro, corazón de alcachofa, jamón, aceituna negra y champiñón." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "HONGOS Y ALBAHACA"
       , "price": 260
       , "desc": "Base de salsa pomodoro, mix de hongos y cebolla morada perfumada con albahaca." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "PIZZA DE ARRACHERA"
       , "price": 345
-      , "desc": "Acompañada de cebolla blanca, chile cuaresmeño y arrachera marinada." 
+      , "desc": "Acompañada de cebolla blanca, chile cuaresmeño y arrachera marinada."
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
     { "name": "PIZZA DE POLLO"
       , "price": 300
       , "desc": "Con pimiento, cebolla morada y pechuga de pollo marinada." 
+      , "category_image": "assets/cat-casaq-pizza.jpg"
       , "category": "PIZZA"
     },
       { "name": "SALMÓN A LA TOSCANA"
       , "price": 280
       , "desc": "Filete de salmón bañado en una salsa de queso parmesano y espinacas." 
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"  
       , "category": "PLATOS FUERTES"
     },
     { "name": "SALMÓN EN CREMA DE CHAMPIÑON"
       , "price": 280
-      , "desc": "Filete de salmón bañado en una salsa de champiñón." 
+      , "desc": "Filete de salmón bañado en una salsa de champiñón."
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"
       , "category": "PLATOS FUERTES"
     },
     { "name": "HAMBURGUESA DE RES"
       , "price": 220
       , "desc": "Con queso mozarella y guarnición de chips de papa." 
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"
       , "category": "PLATOS FUERTES"
     },
     { "name": "TACOS DE ARRACHERA"
       , "price": 230
-      , "desc": "(300 grs) de arrachera con guacamole y papas gajo." 
+      , "desc": "(300 grs) de arrachera con guacamole y papas gajo."
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"
       , "category": "PLATOS FUERTES"
     },
     { "name": "RIBEYE"
       , "price": 265
-      , "desc": "Corte de 300 grs. servido con nopales cebolla cambray guacamole y un volcán de queso." 
+      , "desc": "Corte de 300 grs. servido con nopales cebolla cambray guacamole y un volcán de queso."
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"
       , "category": "PLATOS FUERTES"
     },
     { "name": "ARRACHERA A LA PLANCHA"
       , "price": 240
-      , "desc": "Corte de 300 gramos, acompañada de guacamole y papas gajo." 
+      , "desc": "Corte de 300 gramos, acompañada de guacamole y papas gajo."
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"
       , "category": "PLATOS FUERTES"
     },
     { "name": "SALMÓN EN SALSA DE LIMÓN"
       , "price": 270
-      , "desc": "Salmón a la plancha, crema de espinaca y limón. Coronado con espárragos y almendra fileteada." 
+      , "desc": "Salmón a la plancha, crema de espinaca y limón. Coronado con espárragos y almendra fileteada."
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"
       , "category": "PLATOS FUERTES"
     },
     { "name": "PECHUGA A LA PLANCHA"
       , "price": 190
-      , "desc": "Acompañada de papas gajo y ensalada fresca." 
+      , "desc": "Acompañada de papas gajo y ensalada fresca."
+      , "category_image": "assets/cat-casaq-pfuertes.jpg"
       , "category": "PLATOS FUERTES"
     },
     { "name": "MINI PIZZA DE PEPPERONI"
