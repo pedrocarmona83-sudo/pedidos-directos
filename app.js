@@ -26,7 +26,20 @@ function buildWhatsLink(phone, text) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 }
 
-function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumber) {
+function fmtOrderText(
+  biz,
+  cartLines,
+  name,
+  phone,
+  addr,
+  note,
+  payment,
+  bank,
+  clabe,
+  accountHolder,
+  total,
+  orderNumber
+) {
   const lines = [];
 
   lines.push(`*Nuevo pedido* — ${biz.name}`);
@@ -47,6 +60,14 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
   if (name) lines.push(`Nombre: ${name}`);
   if (phone) lines.push(`Teléfono: ${phone}`);
   if (addr) lines.push(`Dirección: ${addr}`);
+  if (payment) lines.push(`Pago: ${payment}`);
+
+  if (payment === "Transferencia") {
+    if (bank) lines.push(`Banco: ${bank}`);
+    if (clabe) lines.push(`CLABE: ${clabe}`);
+    if (accountHolder) lines.push(`Titular: ${accountHolder}`);
+  }
+
   if (note) lines.push(`Nota: ${note}`);
 
   lines.push("");
@@ -78,6 +99,12 @@ function isMobileView() {
   const inputPhone = document.getElementById("custPhone");
   const inputAddr = document.getElementById("custAddr");
   const inputNote = document.getElementById("custNote");
+  const inputPayment = document.getElementById("custPayment");
+
+  const paymentTransferFields = document.getElementById("paymentTransferFields");
+  const displayBank = document.getElementById("displayBank");
+  const displayClabe = document.getElementById("displayClabe");
+  const displayAccountHolder = document.getElementById("displayAccountHolder");
 
   const state = {
     biz: null,
@@ -86,6 +113,15 @@ function isMobileView() {
     lastOrderNumber: null,
     collapsedCategories: {}
   };
+
+  function getBusinessPaymentDetails() {
+    const details = state.biz?.payment_details || {};
+    return {
+      bank: String(details.bank || "").trim(),
+      clabe: String(details.clabe || "").trim(),
+      accountHolder: String(details.account_holder || "").trim()
+    };
+  }
 
   function variantKey(item) {
     const opt =
@@ -144,11 +180,18 @@ function isMobileView() {
   }
 
   function getCustomerData() {
+    const payment = (inputPayment?.value || "Efectivo").trim();
+    const paymentDetails = getBusinessPaymentDetails();
+
     return {
       name: (inputName?.value || "").trim(),
       phone: sanitizePhone(inputPhone?.value || ""),
       addr: (inputAddr?.value || "").trim(),
-      note: (inputNote?.value || "").trim()
+      note: (inputNote?.value || "").trim(),
+      payment,
+      bank: payment === "Transferencia" ? paymentDetails.bank : "",
+      clabe: payment === "Transferencia" ? paymentDetails.clabe : "",
+      accountHolder: payment === "Transferencia" ? paymentDetails.accountHolder : ""
     };
   }
 
@@ -174,13 +217,35 @@ function isMobileView() {
     });
   }
 
+  function updatePaymentFieldsVisibility() {
+    if (!paymentTransferFields || !inputPayment) return;
+
+    const isTransfer = inputPayment.value === "Transferencia";
+    paymentTransferFields.style.display = isTransfer ? "block" : "none";
+
+    const details = getBusinessPaymentDetails();
+
+    if (displayBank) displayBank.textContent = details.bank || "-";
+    if (displayClabe) displayClabe.textContent = details.clabe || "-";
+    if (displayAccountHolder) displayAccountHolder.textContent = details.accountHolder || "-";
+  }
+
   function updatePreviewLinks() {
     const cartLines = getCartLines();
     const total = getTotal();
 
     totalEl.textContent = money(total);
 
-    const { name, phone, addr, note } = getCustomerData();
+    const {
+      name,
+      phone,
+      addr,
+      note,
+      payment,
+      bank,
+      clabe,
+      accountHolder
+    } = getCustomerData();
 
     const text = fmtOrderText(
       state.biz,
@@ -189,6 +254,10 @@ function isMobileView() {
       phone,
       addr,
       note,
+      payment,
+      bank,
+      clabe,
+      accountHolder,
       total,
       state.lastOrderNumber
     );
@@ -216,7 +285,17 @@ function isMobileView() {
     }
 
     const total = getTotal();
-    const { name, phone, addr, note } = getCustomerData();
+
+    const {
+      name,
+      phone,
+      addr,
+      note,
+      payment,
+      bank,
+      clabe,
+      accountHolder
+    } = getCustomerData();
 
     const payload = {
       business: state.biz.name,
@@ -225,6 +304,10 @@ function isMobileView() {
       phone: phone,
       address: addr,
       note: note,
+      payment: payment,
+      bank: bank,
+      clabe: clabe,
+      account_holder: accountHolder,
       order: buildOrderTextForSheets(cartLines),
       total: total
     };
@@ -427,7 +510,6 @@ function isMobileView() {
 
     menuEl.onchange = (e) => {
       const idx = e.target.dataset.opt;
-
       if (idx === undefined) return;
 
       const item = state.items[Number(idx)];
@@ -453,7 +535,17 @@ function isMobileView() {
           state.lastOrderNumber = orderNumber;
 
           const total = getTotal();
-          const { name, phone, addr, note } = getCustomerData();
+
+          const {
+            name,
+            phone,
+            addr,
+            note,
+            payment,
+            bank,
+            clabe,
+            accountHolder
+          } = getCustomerData();
 
           const text = fmtOrderText(
             state.biz,
@@ -462,6 +554,10 @@ function isMobileView() {
             phone,
             addr,
             note,
+            payment,
+            bank,
+            clabe,
+            accountHolder,
             total,
             orderNumber
           );
@@ -476,11 +572,18 @@ function isMobileView() {
         };
       });
 
-    [inputName, inputPhone, inputAddr, inputNote]
+    [inputName, inputPhone, inputAddr, inputNote, inputPayment]
       .filter(Boolean)
       .forEach((input) => {
         input.addEventListener("input", () => {
           state.lastOrderNumber = null;
+          updatePaymentFieldsVisibility();
+          updatePreviewLinks();
+        });
+
+        input.addEventListener("change", () => {
+          state.lastOrderNumber = null;
+          updatePaymentFieldsVisibility();
           updatePreviewLinks();
         });
       });
@@ -517,8 +620,8 @@ function isMobileView() {
       }));
 
       initializeCollapsedCategories();
-
       attachEvents();
+      updatePaymentFieldsVisibility();
       renderMenu();
       renderCart();
     })
