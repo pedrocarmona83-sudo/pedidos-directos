@@ -9,20 +9,20 @@
     { "name": "HOTCAKES DE VAINILLA"
       , "price": 130
       , "desc": "Con frutos rojos frescos, compota de frutos rojos y miel de maple." 
-      , "category_image": "/assets/cat-casaq-para-empezar.jpg",
+      , "category_image": "assets/cat-casaq-para-empezar.jpg",
       , "category": "PARA EMPEZAR"
       
     },
     { "name": "PAN FRANCÉS"
       , "price": 120
       , "desc": "De vainilla y frutos rojos frescos." 
-      , "category_image": "/assets/cat-casaq-para-empezar.jpg",
+      , "category_image": "assets/cat-casaq-para-empezar.jpg",
       , "category": "PARA EMPEZAR"
     },
     { "name": "BOWL DE FRUTA DE TEMPORADA"
       , "price": 90
       , "desc": "Con granola y yogurt natural."
-      , "category_image": "/assets/cat-casaq-para-empezar.jpg",
+      , "category_image": "assets/cat-casaq-para-empezar.jpg",
       , "category": "PARA EMPEZAR" 
     },
     { "name": "OMELETTE DE CHILAQUILES"
