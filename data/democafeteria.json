@@ -5,6 +5,11 @@
   "whatsapp_e164": "5215545151457",
   "hero_image":"assets/demofafeteria-hero.jpg",
   "logo": "/assets/democafeteria-logo.png",
+  "payment_details": {
+    "bank": "BBVA",
+    "clabe": "012345678901234567",
+    "account_holder": "CAFETERIA DEMO"
+  },
   "items": [
     { "name": "Espresso"
       , "price": 20
