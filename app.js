@@ -55,6 +55,10 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
   return lines.join("\n");
 }
 
+function isMobileView() {
+  return window.innerWidth <= 700;
+}
+
 (function () {
   const slug = getSlug();
 
@@ -154,6 +158,22 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       .join(", ");
   }
 
+  function initializeCollapsedCategories() {
+    const categories = [
+      ...new Set(state.items.map((it) => (it.category || "General").trim()))
+    ];
+
+    state.collapsedCategories = {};
+
+    categories.forEach((categoryName, index) => {
+      if (isMobileView()) {
+        state.collapsedCategories[categoryName] = index !== 0;
+      } else {
+        state.collapsedCategories[categoryName] = false;
+      }
+    });
+  }
+
   function updatePreviewLinks() {
     const cartLines = getCartLines();
     const total = getTotal();
@@ -241,32 +261,60 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
       const category = (it.category || "General").trim();
 
       if (!grouped[category]) {
-        grouped[category] = [];
+        grouped[category] = {
+          image: it.category_image || "",
+          items: []
+        };
       }
 
-      grouped[category].push({ item: it, idx });
+      if (!grouped[category].image && it.category_image) {
+        grouped[category].image = it.category_image;
+      }
+
+      grouped[category].items.push({ item: it, idx });
     });
 
     Object.keys(grouped).forEach((categoryName) => {
       const isCollapsed = !!state.collapsedCategories[categoryName];
+      const categoryImage = grouped[categoryName].image || "";
 
       const section = document.createElement("div");
       section.className = "menuSection";
 
-      const titleBtn = document.createElement("button");
-      titleBtn.type = "button";
-      titleBtn.className = "menuSectionTitleBtn";
-      titleBtn.dataset.categoryToggle = categoryName;
-      titleBtn.innerHTML = `
-        <span class="menuSectionTitleText">${categoryName}</span>
-        <span class="menuSectionChevron">${isCollapsed ? "▸" : "▾"}</span>
-      `;
+      const header = document.createElement("div");
+      header.className = "menuSectionHeader";
+
+      if (categoryImage) {
+        const imageWrap = document.createElement("button");
+        imageWrap.type = "button";
+        imageWrap.className = "menuCategoryImageWrap";
+        imageWrap.dataset.categoryToggle = categoryName;
+        imageWrap.innerHTML = `
+          <img src="${categoryImage}" alt="${categoryName}" class="menuCategoryImage" />
+          <div class="menuCategoryImageOverlay"></div>
+          <div class="menuCategoryImageTitle">
+            <span class="menuCategoryImageTitleText">${categoryName}</span>
+            <span class="menuCategoryImageChevron">${isCollapsed ? "▸" : "▾"}</span>
+          </div>
+        `;
+        header.appendChild(imageWrap);
+      } else {
+        const titleBtn = document.createElement("button");
+        titleBtn.type = "button";
+        titleBtn.className = "menuSectionTitleBtn";
+        titleBtn.dataset.categoryToggle = categoryName;
+        titleBtn.innerHTML = `
+          <span class="menuSectionTitleText">${categoryName}</span>
+          <span class="menuSectionChevron">${isCollapsed ? "▸" : "▾"}</span>
+        `;
+        header.appendChild(titleBtn);
+      }
 
       const sectionItems = document.createElement("div");
       sectionItems.className = "menuSectionItems";
       sectionItems.style.display = isCollapsed ? "none" : "flex";
 
-      grouped[categoryName].forEach(({ item: it, idx }) => {
+      grouped[categoryName].items.forEach(({ item: it, idx }) => {
         const key = variantKey(it);
         const qty = state.cart[key]?.qty || 0;
 
@@ -311,7 +359,7 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
         sectionItems.appendChild(row);
       });
 
-      section.appendChild(titleBtn);
+      section.appendChild(header);
       section.appendChild(sectionItems);
       menuEl.appendChild(section);
     });
@@ -467,6 +515,8 @@ function fmtOrderText(biz, cartLines, name, phone, addr, note, total, orderNumbe
             ? (it.options.choices?.[0] || "")
             : ""
       }));
+
+      initializeCollapsedCategories();
 
       attachEvents();
       renderMenu();
