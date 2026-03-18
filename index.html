@@ -8,16 +8,16 @@
 </head>
 <body>
   <header class="top" id="hero">
-  <div class="heroText">
-    <img id="bizLogo" alt="Logo del negocio" class="bizLogo" style="display:none;" />
-    <h1 id="bizName">Pedidos</h1>
-    <p id="bizSubtitle" class="muted"></p>
-  </div>
+    <div class="heroText">
+      <img id="bizLogo" alt="Logo del negocio" class="bizLogo" style="display:none;" />
+      <h1 id="bizName">Pedidos</h1>
+      <p id="bizSubtitle" class="muted"></p>
+    </div>
 
-  <a id="whatsBtnTop" class="btn btn-whats" href="#" target="_blank" rel="noopener">
-    Enviar por WhatsApp
-  </a>
-</header>
+    <a id="whatsBtnTop" class="btn btn-whats" href="#" target="_blank" rel="noopener">
+      Enviar por WhatsApp
+    </a>
+  </header>
 
   <main class="grid">
     <section class="card">
@@ -42,24 +42,49 @@
           <input id="custAddr" placeholder="Ej. Centro, calle..." />
         </label>
 
-        <label>Nota (opcional)
-          <input id="custNote" placeholder="Ej. sin cebolla" />
-        </label>
-
         <label>Método de pago
           <select id="custPayment">
             <option value="Efectivo">Efectivo</option>
             <option value="Transferencia">Transferencia</option>
           </select>
-      </label>
-        
+        </label>
+
+        <div id="paymentTransferFields" class="paymentInfoCard" style="display:none;">
+          <div class="paymentInfoTitle">Datos para transferencia</div>
+
+          <div class="paymentInfoRow">
+            <span class="paymentInfoLabel">Banco:</span>
+            <span id="displayBank" class="paymentInfoValue">-</span>
+          </div>
+
+          <div class="paymentInfoRow">
+            <span class="paymentInfoLabel">CLABE:</span>
+            <span id="displayClabe" class="paymentInfoValue">-</span>
+          </div>
+
+          <div class="paymentInfoRow">
+            <span class="paymentInfoLabel">Titular:</span>
+            <span id="displayAccountHolder" class="paymentInfoValue">-</span>
+          </div>
+
+          <p class="muted small" style="margin-top:8px;">
+            Al elegir transferencia, estos datos también se incluirán en tu pedido por WhatsApp.
+          </p>
+        </div>
+
+        <label>Nota (opcional)
+          <input id="custNote" placeholder="Ej. sin cebolla" />
+        </label>
       </div>
 
       <div class="totals">
         <div><span>Total:</span> <strong id="total">$0</strong></div>
       </div>
 
-      <a id="whatsBtn" class="btn btn-whats" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      <a id="whatsBtn" class="btn btn-whats" href="#" target="_blank" rel="noopener">
+        Enviar por WhatsApp
+      </a>
+
       <p class="muted small">Al enviar, se abrirá WhatsApp con el pedido listo.</p>
     </aside>
   </main>
@@ -71,4 +96,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
