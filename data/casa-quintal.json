@@ -5,6 +5,11 @@
   "whatsapp_e164": "5215545151457",
   "hero_image":"assets/casa_quintal-hero.jpg",
   "logo": "/assets/casa_quintal-logo.png",
+  "payment_details": {
+    "bank": "BBVA",
+    "clabe": "012345678901234567",
+    "account_holder": "Casa Quintal"
+  },
   "items": [
     { "name": "HOTCAKES DE VAINILLA"
       , "price": 130
