@@ -1,0 +1,61 @@
+
+{
+  "name": "El Jardín de Juárez",
+  "subtitle": "Antojitos Mexicanos. Seevicio de Jeves a Domingo de 9:30 a 15:00 hrs. y de 18:00 a 23:00 hrs.",
+  "whatsapp_e164": "5215545151457",
+  "hero_image":"assets/jardin_juarez-hero.jpg",
+  "logo": "/assets/jardin_juarez-logo.png",
+  "payment_details": {
+    "bank": "BBVA",
+    "clabe": "012345678901234567",
+    "account_holder": "EVELYN DELGADO REYES"
+  },
+  "items": [
+    { "name": "Quesadilla sencilla"
+      , "price": 30
+      , "desc": "Quesadilla de distintos guisados" 
+      , "category_image": "assets/jardin-juarez-quesadillas.jpg"
+      , "category": "QUESADILLAS"
+      , "options": 
+        {
+          "type": "select",
+          "label": "¿Elige un guisado?",
+          "choices": ["Papa c/Chorizo", "Rajas c/Queso", "Sesos guisados", "Champiñones", "Tinga de Res", "Picadillo", "Pollo con papas"
+                      , "Flor de calabaza", "Queso Oaxaca", "Huitlacoche", "Chicharron", "Pancita"]
+        }
+      
+    },
+    { "name": "Quesadilla con quesillo"
+      , "price": 35
+      , "desc": "Quesadilla de distintos guisados acompañada con queso oaxaca" 
+      , "category_image": "assets/jardin-juarez-quesadillas.jpg"
+      , "category": "QUESADILLAS"
+      , "Nopales": 
+        {
+          "type": "select",
+          "label": "¿Con Nopales?",
+          "choices": ["Si", "No"]
+        }
+      , "Lechuga": 
+        {
+          "type": "select",
+          "label": "¿Con Nopales?",
+          "choices": ["Si", "No"]
+        }
+      , "Queso rayado": 
+        {
+          "type": "select",
+          "label": "¿Con Nopales?",
+          "choices": ["Si", "No"]
+        }
+      , "options": 
+        {
+          "type": "select",
+          "label": "¿Elige un guisado?",
+          "choices": ["Papa c/Chorizo", "Rajas c/Queso", "Sesos guisados", "Champiñones", "Tinga de Res", "Picadillo", "Pollo con papas"
+                      , "Flor de calabaza", "Huitlacoche", "Chicharron", "Pancita"]
+        }
+    }
+  ]
+
+}
