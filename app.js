@@ -31,6 +31,8 @@ function fmtOrderText(
   cartLines,
   name,
   phone,
+  deliveryType,
+  eta,
   addr,
   note,
   payment,
@@ -59,6 +61,8 @@ function fmtOrderText(
 
   if (name) lines.push(`Nombre: ${name}`);
   if (phone) lines.push(`Teléfono: ${phone}`);
+  if (deliveryType) lines.push(`Entrega: ${deliveryType}`);
+  if (eta) lines.push(`Hora estimada: ${eta}`);
   if (addr) lines.push(`Dirección: ${addr}`);
   if (payment) lines.push(`Pago: ${payment}`);
 
@@ -71,6 +75,8 @@ function fmtOrderText(
   if (note) lines.push(`Nota: ${note}`);
 
   lines.push("");
+  lines.push("👉 Por favor envía este mensaje para confirmar tu pedido.");
+  lines.push("⚠️ El pedido se registra inicialmente como pendiente.");
   lines.push("Pedidos Directos Pro");
 
   return lines.join("\n");
@@ -97,6 +103,8 @@ function isMobileView() {
 
   const inputName = document.getElementById("custName");
   const inputPhone = document.getElementById("custPhone");
+  const inputDeliveryType = document.getElementById("custDeliveryType");
+  const inputEta = document.getElementById("custEta");
   const inputAddr = document.getElementById("custAddr");
   const inputNote = document.getElementById("custNote");
   const inputPayment = document.getElementById("custPayment");
@@ -182,10 +190,13 @@ function isMobileView() {
   function getCustomerData() {
     const payment = (inputPayment?.value || "Efectivo").trim();
     const paymentDetails = getBusinessPaymentDetails();
+    const deliveryType = (inputDeliveryType?.value || "Domicilio").trim();
 
     return {
       name: (inputName?.value || "").trim(),
       phone: sanitizePhone(inputPhone?.value || ""),
+      deliveryType,
+      eta: (inputEta?.value || "").trim(),
       addr: (inputAddr?.value || "").trim(),
       note: (inputNote?.value || "").trim(),
       payment,
@@ -239,6 +250,8 @@ function isMobileView() {
     const {
       name,
       phone,
+      deliveryType,
+      eta,
       addr,
       note,
       payment,
@@ -252,6 +265,8 @@ function isMobileView() {
       cartLines,
       name,
       phone,
+      deliveryType,
+      eta,
       addr,
       note,
       payment,
@@ -289,6 +304,8 @@ function isMobileView() {
     const {
       name,
       phone,
+      deliveryType,
+      eta,
       addr,
       note,
       payment,
@@ -302,6 +319,8 @@ function isMobileView() {
       business_slug: slug,
       customer: name,
       phone: phone,
+      delivery_type: deliveryType,
+      eta: eta,
       address: addr,
       note: note,
       payment: payment,
@@ -539,6 +558,8 @@ function isMobileView() {
           const {
             name,
             phone,
+            deliveryType,
+            eta,
             addr,
             note,
             payment,
@@ -552,6 +573,8 @@ function isMobileView() {
             cartLines,
             name,
             phone,
+            deliveryType,
+            eta,
             addr,
             note,
             payment,
@@ -565,14 +588,14 @@ function isMobileView() {
           const waLink = buildWhatsLink(state.biz.whatsapp_e164, text);
 
           if (orderNumber) {
-            alert(`Pedido #${orderNumber} guardado. Se abrirá WhatsApp para enviarlo.`);
+            alert(`Pedido #${orderNumber} registrado como pendiente. Se abrirá WhatsApp para confirmarlo.`);
           }
 
           window.open(waLink, "_blank", "noopener,noreferrer");
         };
       });
 
-    [inputName, inputPhone, inputAddr, inputNote, inputPayment]
+    [inputName, inputPhone, inputDeliveryType, inputEta, inputAddr, inputNote, inputPayment]
       .filter(Boolean)
       .forEach((input) => {
         input.addEventListener("input", () => {
