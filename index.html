@@ -38,6 +38,17 @@
           <input id="custPhone" placeholder="Ej. 5512345678" inputmode="numeric" />
         </label>
 
+        <label>Tipo de entrega
+          <select id="custDeliveryType">
+            <option value="Domicilio">Domicilio</option>
+            <option value="Recoger">Recoger</option>
+          </select>
+        </label>
+
+        <label>Hora estimada
+          <input id="custEta" type="time" />
+        </label>
+
         <label>Dirección / referencias (opcional)
           <input id="custAddr" placeholder="Ej. Centro, calle..." />
         </label>
@@ -85,7 +96,9 @@
         Enviar por WhatsApp
       </a>
 
-      <p class="muted small">Al enviar, se abrirá WhatsApp con el pedido listo.</p>
+      <p class="muted small" style="margin-top:8px;">
+        Tu pedido se registra como pendiente y se confirma únicamente al enviarlo por WhatsApp.
+      </p>
     </aside>
   </main>
 
