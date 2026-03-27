@@ -1,5 +1,5 @@
 // ====== CONFIG ======
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSutVq105O2DjrVo-cCGN6IQxnvW1oeex96TTtC43FIJZi4m9FpgF-EDyh5RHOVc7n/exec"; // https://script.google.com/macros/s/XXX/exec
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxxhFFmQAmz-SMHZqyZtN2J33V2_cnx5Lv3ZmZj_bAng5XUC7xth_Bo3bx4FZMCujp/exec"; // https://script.google.com/macros/s/XXX/exec
 // ====================
 
 const money = (n) =>
