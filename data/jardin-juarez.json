@@ -30,22 +30,22 @@
       , "desc": "Quesadilla de distintos guisados acompañada con queso oaxaca" 
       , "category_image": "assets/jardin-juarez-quesadillas.jpg"
       , "category": "QUESADILLAS"
-      , "Nopales": 
+      , "nopales": 
         {
           "type": "select",
-          "label": "¿Con Nopales?",
+          "label": "¿Nopales?",
           "choices": ["Si", "No"]
         }
-      , "Lechuga": 
+      , "lechuga": 
         {
           "type": "select",
-          "label": "¿Con Nopales?",
+          "label": "¿Lechuga?",
           "choices": ["Si", "No"]
         }
-      , "Queso rayado": 
+      , "quesorayado": 
         {
           "type": "select",
-          "label": "¿Con Nopales?",
+          "label": "¿Queso Rayado?",
           "choices": ["Si", "No"]
         }
       , "options": 
