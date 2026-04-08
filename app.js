@@ -26,6 +26,65 @@ function buildWhatsLink(phone, text) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 }
 
+function isMobileView() {
+  return window.innerWidth <= 700;
+}
+
+function isSelectConfig(value) {
+  return (
+    value &&
+    typeof value === "object" &&
+    value.type === "select" &&
+    Array.isArray(value.choices)
+  );
+}
+
+function getSelectableFields(item) {
+  return Object.entries(item)
+    .filter(([key, value]) => {
+      if (["id", "name", "price", "desc", "category", "category_image", "image"].includes(key)) {
+        return false;
+      }
+      return isSelectConfig(value);
+    })
+    .map(([key, value]) => ({
+      key,
+      label: value.label || key,
+      choices: value.choices || []
+    }));
+}
+
+function buildDefaultSelections(item) {
+  const selections = {};
+  const selectableFields = getSelectableFields(item);
+
+  selectableFields.forEach((field) => {
+    selections[field.key] = field.choices?.[0] || "";
+  });
+
+  return selections;
+}
+
+function buildSelectionsText(selections, item) {
+  const selectableFields = getSelectableFields(item);
+  if (!selectableFields.length) return "";
+
+  const parts = selectableFields
+    .map((field) => {
+      const value = selections?.[field.key] || "";
+      if (!value) return "";
+      return `${field.label}: ${value}`;
+    })
+    .filter(Boolean);
+
+  return parts.length ? ` (${parts.join(", ")})` : "";
+}
+
+function buildSelectionsKey(selections) {
+  const keys = Object.keys(selections || {}).sort();
+  return keys.map((k) => `${k}:${selections[k] || ""}`).join("|");
+}
+
 function fmtOrderText(
   biz,
   cartLines,
@@ -63,7 +122,7 @@ function fmtOrderText(
   if (phone) lines.push(`Teléfono: ${phone}`);
   if (deliveryType) lines.push(`Entrega: ${deliveryType}`);
   if (eta) lines.push(`Hora estimada: ${eta}`);
-  if (addr) lines.push(`Dirección: ${addr}`);
+  if (deliveryType === "Domicilio" && addr) lines.push(`Dirección: ${addr}`);
   if (payment) lines.push(`Pago: ${payment}`);
 
   if (payment === "Transferencia") {
@@ -80,10 +139,6 @@ function fmtOrderText(
   lines.push("Pedidos Directos Pro");
 
   return lines.join("\n");
-}
-
-function isMobileView() {
-  return window.innerWidth <= 700;
 }
 
 (function () {
@@ -106,6 +161,7 @@ function isMobileView() {
   const inputDeliveryType = document.getElementById("custDeliveryType");
   const inputEta = document.getElementById("custEta");
   const inputAddr = document.getElementById("custAddr");
+  const inputAddrWrapper = document.getElementById("custAddrWrapper");
   const inputNote = document.getElementById("custNote");
   const inputPayment = document.getElementById("custPayment");
 
@@ -132,27 +188,17 @@ function isMobileView() {
   }
 
   function variantKey(item) {
-    const opt =
-      item.options?.type === "select"
-        ? (item.selectedOption || "")
-        : "";
-
-    return `${item.id}|${opt}`;
+    return `${item.id}|${buildSelectionsKey(item.selectedSelections || {})}`;
   }
 
   function addToCart(item) {
     const key = variantKey(item);
 
-    const opt =
-      item.options?.type === "select"
-        ? (item.selectedOption || "")
-        : "";
-
     const line = state.cart[key] || {
       itemId: item.id,
       name: item.name,
       price: item.price,
-      option: opt,
+      selections: { ...(item.selectedSelections || {}) },
       qty: 0
     };
 
@@ -172,11 +218,18 @@ function isMobileView() {
     }
   }
 
+  function findItemById(itemId) {
+    return state.items.find((it) => it.id === itemId);
+  }
+
   function getCartLines() {
-    return Object.values(state.cart).map((l) => ({
-      ...l,
-      optionText: l.option ? ` (${l.option})` : ""
-    }));
+    return Object.values(state.cart).map((line) => {
+      const item = findItemById(line.itemId);
+      return {
+        ...line,
+        optionText: item ? buildSelectionsText(line.selections, item) : ""
+      };
+    });
   }
 
   function getTotal() {
@@ -187,17 +240,29 @@ function isMobileView() {
     return String(p || "").replace(/\D/g, "");
   }
 
+  function updateDeliveryFieldsVisibility() {
+    if (!inputDeliveryType || !inputAddrWrapper || !inputAddr) return;
+
+    const isPickup = inputDeliveryType.value === "Recoger";
+    inputAddrWrapper.style.display = isPickup ? "none" : "flex";
+
+    if (isPickup) {
+      inputAddr.value = "";
+    }
+  }
+
   function getCustomerData() {
     const payment = (inputPayment?.value || "Efectivo").trim();
     const paymentDetails = getBusinessPaymentDetails();
     const deliveryType = (inputDeliveryType?.value || "Domicilio").trim();
+    const isPickup = deliveryType === "Recoger";
 
     return {
       name: (inputName?.value || "").trim(),
       phone: sanitizePhone(inputPhone?.value || ""),
       deliveryType,
       eta: (inputEta?.value || "").trim(),
-      addr: (inputAddr?.value || "").trim(),
+      addr: isPickup ? "" : (inputAddr?.value || "").trim(),
       note: (inputNote?.value || "").trim(),
       payment,
       bank: payment === "Transferencia" ? paymentDetails.bank : "",
@@ -423,32 +488,37 @@ function isMobileView() {
         const row = document.createElement("div");
         row.className = "item";
 
-        const optionsHtml =
-          it.options?.type === "select"
-            ? `
+        const selectableFields = getSelectableFields(it);
+
+        const selectsHtml = selectableFields
+          .map((field) => {
+            const selectedValue = it.selectedSelections?.[field.key] || "";
+            return `
               <div style="margin-top:8px">
-                <label class="muted small">${it.options.label || "Opciones"}</label>
+                <label class="muted small">${field.label}</label>
                 <select
-                  data-opt="${idx}"
+                  data-opt-item="${idx}"
+                  data-opt-key="${field.key}"
                   style="width:100%;margin-top:6px;padding:10px;border-radius:12px;border:1px solid #1b2230;background:#0b0c10;color:#e9eef6"
                 >
-                  ${(it.options.choices || [])
+                  ${field.choices
                     .map(
-                      (c) =>
-                        `<option value="${c}" ${c === it.selectedOption ? "selected" : ""}>${c}</option>`
+                      (choice) =>
+                        `<option value="${choice}" ${choice === selectedValue ? "selected" : ""}>${choice}</option>`
                     )
                     .join("")}
                 </select>
               </div>
-            `
-            : "";
+            `;
+          })
+          .join("");
 
         row.innerHTML = `
           <div style="min-width:0">
             <strong>${it.name}</strong>
             ${it.desc ? `<div class="muted small">${it.desc}</div>` : ""}
             <div class="price">${money(it.price)}</div>
-            ${optionsHtml}
+            ${selectsHtml}
           </div>
 
           <div class="controls">
@@ -528,11 +598,16 @@ function isMobileView() {
     };
 
     menuEl.onchange = (e) => {
-      const idx = e.target.dataset.opt;
-      if (idx === undefined) return;
+      const itemIdx = e.target.dataset.optItem;
+      const optionKey = e.target.dataset.optKey;
 
-      const item = state.items[Number(idx)];
-      item.selectedOption = e.target.value;
+      if (itemIdx === undefined || optionKey === undefined) return;
+
+      const item = state.items[Number(itemIdx)];
+      item.selectedSelections = {
+        ...(item.selectedSelections || {}),
+        [optionKey]: e.target.value
+      };
 
       state.lastOrderNumber = null;
       renderMenu();
@@ -600,12 +675,14 @@ function isMobileView() {
       .forEach((input) => {
         input.addEventListener("input", () => {
           state.lastOrderNumber = null;
+          updateDeliveryFieldsVisibility();
           updatePaymentFieldsVisibility();
           updatePreviewLinks();
         });
 
         input.addEventListener("change", () => {
           state.lastOrderNumber = null;
+          updateDeliveryFieldsVisibility();
           updatePaymentFieldsVisibility();
           updatePreviewLinks();
         });
@@ -636,14 +713,12 @@ function isMobileView() {
       state.items = (biz.items || []).map((it, i) => ({
         id: it.id || `item_${i}`,
         ...it,
-        selectedOption:
-          it.options?.type === "select"
-            ? (it.options.choices?.[0] || "")
-            : ""
+        selectedSelections: buildDefaultSelections(it)
       }));
 
       initializeCollapsedCategories();
       attachEvents();
+      updateDeliveryFieldsVisibility();
       updatePaymentFieldsVisibility();
       renderMenu();
       renderCart();
