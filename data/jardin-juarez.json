@@ -14,7 +14,7 @@
     { "name": "Quesadilla sencilla"
       , "price": 30
       , "desc": "Quesadilla de distintos guisados" 
-      , "category_image": "assets/jardin-juarez-quesadillas.jpg"
+      , "category_image": "assets/cat-jardin-juarez-quesadillas.jpg"
       , "category": "QUESADILLAS"
       , "options": 
         {
@@ -28,7 +28,7 @@
     { "name": "Quesadilla con quesillo"
       , "price": 35
       , "desc": "Quesadilla de distintos guisados acompañada con queso oaxaca" 
-      , "category_image": "assets/jardin-juarez-quesadillas.jpg"
+      , "category_image": "assets/cat-jardin-juarez-quesadillas.jpg"
       , "category": "QUESADILLAS"
       , "nopales": 
         {
