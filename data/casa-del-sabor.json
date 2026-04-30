@@ -115,6 +115,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Pechuga Opción 2"
       , "price": 30
@@ -127,6 +133,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Pechuga Opción 3"
       , "price": 30
@@ -139,6 +151,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Res Opción 1"
       , "price": 30
@@ -151,6 +169,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Res Opción 2"
       , "price": 30
@@ -163,6 +187,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Res Opción 3"
       , "price": 30
@@ -175,6 +205,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Cerdo Opción 1"
       , "price": 30
@@ -187,6 +223,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Cerdo Opción 2"
       , "price": 30
@@ -199,6 +241,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Cerdo Opción 3"
       , "price": 30
@@ -211,6 +259,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Pescado Opción 1"
       , "price": 30
@@ -223,6 +277,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Pescado Opción 2"
       , "price": 30
@@ -235,6 +295,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     },
     { "name": "Pescado Opción 3"
       , "price": 30
@@ -247,6 +313,12 @@
           "label": "Guarnición:",
           "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
         }
+      , "options2": 
+        {
+          "type": "select",
+          "label": "Bebida:",
+          "choices": ["Limón Menta", "Jamaica Guayaba"]
+        }  
     }
     
   ]
