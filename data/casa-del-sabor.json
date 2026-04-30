@@ -1,0 +1,254 @@
+
+{
+  "name": "La Casa del Sabor",
+  "subtitle": "Desayunos y comidas .",
+  "whatsapp_e164": "5215545151457",
+  "hero_image":"assets/casa_sabor-hero.jpg",
+  "logo": "/assets/casa_sabor-logo.png",
+  "payment_details": {
+    "bank": "BBVA",
+    "clabe": "012345678901234567",
+    "account_holder": "Lidia Cid del Prado"
+  },
+  "items": [
+    { "name": "Paquete Huevos Revueltos"
+      , "price": 30
+      , "desc": "Huevos revueltos a elegir, acompañados con frijoles refritos con queso fresco o chilaquiles, café o té, futa o jugo" 
+      , "category_image": "assets/cat-casa_sabor-desayunos.jpg"
+      , "category": "DESAYUNOS"
+      , "options": 
+        {
+          "type": "select",
+          "label": "¿Elige una opción",
+          "choices": ["Con jamón", "Con espinacas", "Con champiñones", "En salsa verde", "A la mexicana"]
+        }
+      , "opcion1":
+        {
+          "type": "select"
+          , "label": "Acompañados con:"
+          , "choices": ["Frijoles refritos", "Chilaquiles verdes", "Chilaquiles rojos"]
+        }
+        , "opcion2":
+        {
+          "type": "select"
+          , "label": "Café/Té:"
+          , "choices": ["Cafe americano", "Té Manzanilla", "Té Manzanilla", "Té Negro", "Té de límon"]
+        }
+        , "opcion3":
+        {
+          "type": "select"
+          , "label": "Fruta/Jugo:"
+          , "choices": ["Fruta picada", "Jugo de naranja natural"]
+        }
+    },
+
+     { "name": "Paquete Omelette"
+      , "price": 30
+      , "desc": "Omelette a elegir, acompañados con frijoles refritos con queso fresco o chilaquiles, café o té, futa o jugo" 
+      , "category_image": "assets/cat-casa_sabor-desayunos.jpg"
+      , "category": "DESAYUNOS"
+      , "options": 
+        {
+          "type": "select",
+          "label": "¿Elige una opción",
+          "choices": ["Con jamón", "Con espinacas", "Con champiñones"]
+        }
+      , "opcion1":
+        {
+          "type": "select"
+          , "label": "Acompañados con:"
+          , "choices": ["Frijoles refritos", "Chilaquiles verdes", "Chilaquiles rojos"]
+        }
+        , "opcion2":
+        {
+          "type": "select"
+          , "label": "Café/Té:"
+          , "choices": ["Cafe americano", "Té Manzanilla", "Té Manzanilla", "Té Negro", "Té de límon"]
+        }
+        , "opcion3":
+        {
+          "type": "select"
+          , "label": "Fruta/Jugo:"
+          , "choices": ["Fruta picada", "Jugo de naranja natural"]
+        }
+    },
+
+     { "name": "Molletes"
+      , "price": 30
+      , "desc": "Dos molletes de jamon con quesillo, café o té a elegir con fruta y jugo de naranja natural." 
+      , "category_image": "assets/cat-casa_sabor-desayunos.jpg"
+      , "category": "DESAYUNOS"
+      , "opcion1":
+        {
+          "type": "select"
+          , "label": "Café/Té:"
+          , "choices": ["Cafe americano", "Té Manzanilla", "Té Manzanilla", "Té Negro", "Té de límon"]
+        }
+      },
+    { "name": "PASTA"
+      , "price": 3  0
+      , "desc": "Elige entre las diferentes opciones y arma tu comida del día" 
+      , "category_image": "assets/cat-casa_sabor-pasta.jpg"
+      , "category": "PASTA"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Elige el tipo de pasta:",
+          "choices": ["Spaguetti", "Fusilli", "Fetuchinni"]
+        }
+      , "opcion1":
+        {
+          "type": "select"
+          , "label": "Elige el tipo de pasta:"
+          , "choices": ["Alfredo", "Boloñesa", "Pesto"]
+        }
+        
+    },
+    { "name": "Pechuga Opción 1"
+      , "price": 30
+      , "desc": "Pechuga Opción 1" 
+      , "category_image": "assets/cat-casa_sabor-pollo.jpg"
+      , "category": "POLLO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Pechuga Opción 2"
+      , "price": 30
+      , "desc": "Pechuga Opción 1" 
+      , "category_image": "assets/cat-casa_sabor-pollo.jpg"
+      , "category": "POLLO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Pechuga Opción 3"
+      , "price": 30
+      , "desc": "Pechuga Opción 1" 
+      , "category_image": "assets/cat-casa_sabor-pollo.jpg"
+      , "category": "POLLO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Res Opción 1"
+      , "price": 30
+      , "desc": "Res Opción 1" 
+      , "category_image": "assets/cat-casa_sabor-res.jpg"
+      , "category": "RES"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Res Opción 2"
+      , "price": 30
+      , "desc": "Res Opción 2" 
+      , "category_image": "assets/cat-casa_sabor-res.jpg"
+      , "category": "RES"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Res Opción 3"
+      , "price": 30
+      , "desc": "Res Opción 3" 
+      , "category_image": "assets/cat-casa_sabor-res.jpg"
+      , "category": "RES"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Cerdo Opción 1"
+      , "price": 30
+      , "desc": "Cerdo Opción 1" 
+      , "category_image": "assets/cat-casa_sabor-cerdo.jpg"
+      , "category": "CERDO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Cerdo Opción 2"
+      , "price": 30
+      , "desc": "Cerdo Opción 2" 
+      , "category_image": "assets/cat-casa_sabor-cerdo.jpg"
+      , "category": "CERDO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Cerdo Opción 3"
+      , "price": 30
+      , "desc": "Cerdo Opción 3" 
+      , "category_image": "assets/cat-casa_sabor-cerdo.jpg"
+      , "category": "CERDO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Pescado Opción 1"
+      , "price": 30
+      , "desc": "Pescado Opción 1" 
+      , "category_image": "assets/cat-casa_sabor-pescado.jpg"
+      , "category": "PESCADO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Pescado Opción 2"
+      , "price": 30
+      , "desc": "Pescado Opción 2" 
+      , "category_image": "assets/cat-casa_sabor-pescado.jpg"
+      , "category": "PESCADO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    },
+    { "name": "Pescado Opción 3"
+      , "price": 30
+      , "desc": "Pescado Opción 3" 
+      , "category_image": "assets/cat-casa_sabor-pescado.jpg"
+      , "category": "PESCADO"
+      , "options": 
+        {
+          "type": "select",
+          "label": "Guarnición:",
+          "choices": ["Pure de Papá", "Papas ", "Vegetales", "Ensalada"]
+        }
+    }
+    
+  ]
+
+}
