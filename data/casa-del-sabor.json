@@ -11,80 +11,36 @@
     "account_holder": "Lidia Cid del Prado"
   },
   "items": [
-    { "name": "Paquete Huevos Revueltos"
+    { "name": "PAQUETE DESAYUNO"
       , "price": 30
-      , "desc": "Huevos revueltos a elegir, acompañados con frijoles refritos con queso fresco o chilaquiles, café o té, futa o jugo" 
+      , "desc": "Huevos revueltos u omelette, con proteina a elegir, se incluyen frijoles refritos y fruta" 
       , "category_image": "assets/cat-casa_sabor-desayunos.jpg"
       , "category": "DESAYUNOS"
       , "options": 
         {
           "type": "select",
-          "label": "¿Elige una opción",
-          "choices": ["Con jamón", "Con espinacas", "Con champiñones", "En salsa verde", "A la mexicana"]
+          "label": "Como los prefieres:",
+          "choices": ["Revueltos", "Omelette"]
         }
       , "opcion1":
         {
           "type": "select"
-          , "label": "Acompañados con:"
-          , "choices": ["Frijoles refritos", "Chilaquiles verdes", "Chilaquiles rojos"]
+          , "label": "Elige con que quieres acompañarlos:"
+          , "choices": ["Con jamón", "Con espinacas", "Con champiñones", "Con tocino", "Con salchicha", "A la mexicana"]
         }
         , "opcion2":
         {
           "type": "select"
-          , "label": "Café/Té:"
-          , "choices": ["Cafe americano", "Té Manzanilla", "Té Manzanilla", "Té Negro", "Té de límon"]
+          , "label": "Complemento:"
+          , "choices": ["Pan", "Tortilla"]
         }
         , "opcion3":
         {
           "type": "select"
-          , "label": "Fruta/Jugo:"
-          , "choices": ["Fruta picada", "Jugo de naranja natural"]
+          , "label": "Bebida:"
+          , "choices": ["Cafe americano", "Té Manzanilla", "Té Manzanilla", "Té Negro", "Té de límon", "Jugo de naranja natural"]
         }
     },
-
-     { "name": "Paquete Omelette"
-      , "price": 30
-      , "desc": "Omelette a elegir, acompañados con frijoles refritos con queso fresco o chilaquiles, café o té, futa o jugo" 
-      , "category_image": "assets/cat-casa_sabor-desayunos.jpg"
-      , "category": "DESAYUNOS"
-      , "options": 
-        {
-          "type": "select",
-          "label": "¿Elige una opción",
-          "choices": ["Con jamón", "Con espinacas", "Con champiñones"]
-        }
-      , "opcion1":
-        {
-          "type": "select"
-          , "label": "Acompañados con:"
-          , "choices": ["Frijoles refritos", "Chilaquiles verdes", "Chilaquiles rojos"]
-        }
-        , "opcion2":
-        {
-          "type": "select"
-          , "label": "Café/Té:"
-          , "choices": ["Cafe americano", "Té Manzanilla", "Té Manzanilla", "Té Negro", "Té de límon"]
-        }
-        , "opcion3":
-        {
-          "type": "select"
-          , "label": "Fruta/Jugo:"
-          , "choices": ["Fruta picada", "Jugo de naranja natural"]
-        }
-    },
-
-     { "name": "Molletes"
-      , "price": 30
-      , "desc": "Dos molletes de jamon con quesillo, café o té a elegir con fruta y jugo de naranja natural." 
-      , "category_image": "assets/cat-casa_sabor-desayunos.jpg"
-      , "category": "DESAYUNOS"
-      , "opcion1":
-        {
-          "type": "select"
-          , "label": "Café/Té:"
-          , "choices": ["Cafe americano", "Té Manzanilla", "Té Manzanilla", "Té Negro", "Té de límon"]
-        }
-      },
     { "name": "PASTA"
       , "price": 30
       , "desc": "Elige entre las diferentes opciones y arma tu comida del día" 
