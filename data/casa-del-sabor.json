@@ -86,7 +86,7 @@
         }
       },
     { "name": "PASTA"
-      , "price": 3  0
+      , "price": 30
       , "desc": "Elige entre las diferentes opciones y arma tu comida del día" 
       , "category_image": "assets/cat-casa_sabor-pasta.jpg"
       , "category": "PASTA"
